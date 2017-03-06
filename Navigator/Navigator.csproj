@@ -108,13 +108,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FrameControl\NavigatedFrame.cs" />
-    <Compile Include="HistoryRecord.cs" />
-    <Compile Include="NavigationFrame.cs" />
-    <Compile Include="Navigation.cs" />
-    <Compile Include="EventHandler\NavigationArgs.cs" />
-    <Compile Include="EventHandler\NavigationEventHandler.cs" />
-    <Compile Include="NavigationHistory.cs" />
-    <Compile Include="NavigationManager.cs" />
+    <Compile Include="Navigation\History\HistoryRecord.cs" />
+    <Compile Include="Navigation\NavigationFrame.cs" />
+    <Compile Include="Navigation\NavigationWrapper.cs" />
+    <Compile Include="NavigationEventsHandler\NavigationArgs.cs" />
+    <Compile Include="NavigationEventsHandler\NavigationEventHandler.cs" />
+    <Compile Include="Navigation\History\NavigationHistory.cs" />
+    <Compile Include="Navigation\NavigationManager.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Navigator.rd.xml" />

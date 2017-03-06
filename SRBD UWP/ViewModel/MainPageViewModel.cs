@@ -1,11 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Composition;
+using System.IO;
 using System.Threading.Tasks;
+using Windows.Foundation.Metadata;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Prism.Commands;
 using Navigator;
-using Navigator.StaticRegisters.FramesRegister;
+using Navigator.Navigation;
+using SRBD_UWP.PackagesConfig;
+using SRBD_UWP.ImportManager;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -14,7 +20,7 @@ using Navigator.StaticRegisters.FramesRegister;
 namespace SRBD_UWP.ViewModel
 {
     class MainPageViewModel
-    { 
+    {
         public DelegateCommand NavigateToGlobalMenuCommand { get; set; }
         public DelegateCommand ExitAppCommand { get; set; }
         public MainPageViewModel()
@@ -22,15 +28,13 @@ namespace SRBD_UWP.ViewModel
             this.Initialize();
         }
 
-        private async void Initialize()
+        private void Initialize()
         {
             this.NavigateToGlobalMenuCommand =  new DelegateCommand(() =>
-            Navigation.NavigationManager.NavigateFrameSilent(
+            NavigationWrapper.NavigationManager.NavigateFrameSilent(
                 Window.Current.Content as Frame, typeof(GlobalMenu.View.MainPage)));
 
-            this.ExitAppCommand = new DelegateCommand(Exit);
-
-            //await Notification("BLANCKPAGE1's property \'NavigationCacheMode\" is set to Enabled in XAML", "Notification");
+            this.ExitAppCommand = new DelegateCommand(Exit);    
         }
 
         private static async void Exit()

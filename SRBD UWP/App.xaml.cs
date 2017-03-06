@@ -7,6 +7,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Management.Deployment;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -14,7 +15,10 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using SRBD_UWP.ImportManager;
+using SRBD_UWP.PackagesConfig;
 using SRBD_UWP.View;
+using SRBD_UWP.PagesManager;
 
 namespace SRBD_UWP
 {
@@ -34,6 +38,8 @@ namespace SRBD_UWP
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
+
+           PagesLoader.LoadImports(); //LOAD Pages
         }
 
         /// <summary>

@@ -5,7 +5,7 @@ using System.Linq;
 // ReSharper disable RedundantArgumentDefaultValue
 // ReSharper disable UnusedMethodReturnValue.Global
 
-namespace Navigator
+namespace Navigator.Navigation.History
 {
     /// <summary>
     /// The class which describes History Object for navigation

@@ -3,9 +3,9 @@
 
     <ResourceDictionary.MergedDictionaries>
 
-        <ResourceDictionary Source="ms-appx:///Assets/AssetFiles/ColorScheme.xaml" />
-        <ResourceDictionary Source="ms-appx:///Assets/AssetFiles/ButtonStyles.xaml" />
-        <ResourceDictionary Source="ms-appx:///Assets/AssetFiles/IconPath.xaml" /> 
+        <ResourceDictionary Source="ms-appx:///AssetsLibrary/AssetFiles/ColorScheme.xaml" />
+        <ResourceDictionary Source="ms-appx:///AssetsLibrary/AssetFiles/ButtonStyles.xaml" />
+        <ResourceDictionary Source="ms-appx:///AssetsLibrary/AssetFiles/IconPath.xaml" /> 
 
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

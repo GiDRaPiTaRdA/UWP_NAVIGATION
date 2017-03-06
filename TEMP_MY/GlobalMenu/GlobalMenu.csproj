@@ -121,9 +121,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Assets\Assets.csproj">
+    <ProjectReference Include="..\..\Assets\AssetsLibrary.csproj">
       <Project>{72ed367a-d89a-48a1-a702-6ccfce8eeefa}</Project>
-      <Name>Assets</Name>
+      <Name>AssetsLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\MainMenu\MainMenu.csproj">
       <Project>{9715b4d2-ee5e-4942-ba01-f91110035898}</Project>
@@ -142,6 +142,10 @@
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

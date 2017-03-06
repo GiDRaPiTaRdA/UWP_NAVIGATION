@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using Windows.Devices.Midi;
-using Windows.UI.Xaml;
+﻿using System.Collections.ObjectModel;
 using Windows.UI.Xaml.Controls;
 using MainMenu.Models;
 using MainMenu.View;
-using Navigator;
-using Navigator.StaticRegisters.FramesRegister;
+using Navigator.Navigation;
 using Prism.Commands;
-using Prism.Events;
 using PropertyChanged;
 
 namespace MainMenu.ViewModel
@@ -33,9 +26,6 @@ namespace MainMenu.ViewModel
                 this.NaviFrame = new NavigationFrame(frame);
 
             this.Initialize();
-
-            
-
         }
 
         private void Initialize()
@@ -44,9 +34,9 @@ namespace MainMenu.ViewModel
                 new DelegateCommand<object>(obj =>
                                             {
 
-                                                Navigation.NavigationManager.History.ClearAfter(typeof(MainPage));
+                                                NavigationWrapper.NavigationManager.History.ClearAfter(typeof(MainPage));
 
-                                                Navigation.NavigationManager.NavigateFrame(
+                                                NavigationWrapper.NavigationManager.NavigateFrame(
                                                     this.NaviFrame?.CurrentFrame,
                                                     ((MainMenuPageButton)obj).NavigationPageType);
 

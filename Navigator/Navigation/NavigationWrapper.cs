@@ -1,8 +1,9 @@
 ﻿using System;
+using Navigator.Navigation;
 
-namespace Navigator
+namespace Navigator.Navigation
 {
-    public class Navigation
+    public static class NavigationWrapper
     {
         private static readonly Lazy<NavigationManager> LazyNavigationManager = new Lazy<NavigationManager>();
 

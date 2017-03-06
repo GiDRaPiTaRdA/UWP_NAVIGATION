@@ -3,7 +3,7 @@
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 
-namespace Navigator
+namespace Navigator.NavigationEventsHandler
 {
     public class NavigationArgs : EventArgs
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Navigator
+namespace Navigator.NavigationEventsHandler
 {
     public sealed class NavigationEventHandler
     {

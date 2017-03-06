@@ -10,7 +10,8 @@ using GlobalMenu.View;
 using MainMenu.Models;
 using Navigator;
 using Navigator.Annotations;
-using Navigator.StaticRegisters.FramesRegister;
+using Navigator.Navigation;
+using Navigator.Navigation.History;
 using Prism.Commands;
 using PropertyChanged;
 
@@ -36,12 +37,12 @@ namespace GlobalMenu.ViewModel
 
             this.NavigationFrame = new NavigationFrame(frame,nestedFrame);
 
-            Navigation.NavigationManager.NavigateFrame(nestedFrame, typeof(MainMenu.View.MainPage));
+            NavigationWrapper.NavigationManager.NavigateFrame(nestedFrame, typeof(MainMenu.View.MainPage));
             
 
             this.InitializeDelegateCommands();
 
-            Navigation.NavigationManager.NavigationEventHandler.EventHandler += (sender, args) =>
+            NavigationWrapper.NavigationManager.NavigationEventHandler.EventHandler += (sender, args) =>
                                                                                 {
                                                                                         this.GoBack.RaiseCanExecuteChanged();
                                                                                         this.GoForward.RaiseCanExecuteChanged();
@@ -51,13 +52,13 @@ namespace GlobalMenu.ViewModel
 
         private void InitializeDelegateCommands()
         {
-            this.NavigateCommand = new DelegateCommand<HistoryRecord>((h) => Navigator.Navigation.NavigationManager.NavigateFrame(this.NavigationFrame.CurrentFrame, h.PageType));
+            this.NavigateCommand = new DelegateCommand<HistoryRecord>((h) => NavigationWrapper.NavigationManager.NavigateFrame(this.NavigationFrame.CurrentFrame, h.PageType));
 
-            this.GoBack = new DelegateCommand(() => Navigation.NavigationManager.NavigateBack(this.NavigationFrame.CurrentFrame,this.NavigationFrame.NestedFrame),
-                                              () => Navigation.NavigationManager.CanNavigateBack());
+            this.GoBack = new DelegateCommand(() => NavigationWrapper.NavigationManager.NavigateBack(this.NavigationFrame.CurrentFrame,this.NavigationFrame.NestedFrame),
+                                              () => NavigationWrapper.NavigationManager.CanNavigateBack());
 
-            this.GoForward = new DelegateCommand(() => Navigation.NavigationManager.NavigateForward(this.NavigationFrame.NestedFrame),
-                                                 () => Navigation.NavigationManager.CanNavigateForward());
+            this.GoForward = new DelegateCommand(() => NavigationWrapper.NavigationManager.NavigateForward(this.NavigationFrame.NestedFrame),
+                                                 () => NavigationWrapper.NavigationManager.CanNavigateForward());
 
             this.GoHome =  new DelegateCommand(()=>this.NavigationFrame.CurrentFrame.GoBack());
         }

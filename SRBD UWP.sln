@@ -3,12 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRBD UWP", "SRBD UWP\SRBD UWP.csproj", "{C5452072-D793-4E46-B932-45B434B5B4F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRBD_UWP", "SRBD UWP\SRBD_UWP.csproj", "{C5452072-D793-4E46-B932-45B434B5B4F7}"
 	ProjectSection(ProjectDependencies) = postProject
 		{B6F13B71-0102-4998-8038-40EBA441CDF2} = {B6F13B71-0102-4998-8038-40EBA441CDF2}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assets", "Assets\Assets.csproj", "{72ED367A-D89A-48A1-A702-6CCFCE8EEEFA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetsLibrary", "Assets\AssetsLibrary.csproj", "{72ED367A-D89A-48A1-A702-6CCFCE8EEEFA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainMenu", "MainMenu\MainMenu.csproj", "{9715B4D2-EE5E-4942-BA01-F91110035898}"
 EndProject

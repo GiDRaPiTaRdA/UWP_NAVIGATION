@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Navigator
+namespace Navigator.Navigation.History
 {
     public class HistoryRecord
     {

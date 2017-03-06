@@ -2,7 +2,7 @@
 using Windows.UI.Xaml.Controls;
 using MainMenu.View;
 using Navigator;
-using Navigator.StaticRegisters.FramesRegister;
+using Navigator.Navigation;
 using Prism.Commands;
 
 namespace MainMenu.ViewModel
@@ -21,7 +21,7 @@ namespace MainMenu.ViewModel
         {
             this.NavigateCommand =
                 new DelegateCommand(() =>
-                Navigation.NavigationManager.NavigateFrame(
+                NavigationWrapper.NavigationManager.NavigateFrame(
                     frame, typeof(BlankPage2)));      
                           
         }

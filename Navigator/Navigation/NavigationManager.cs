@@ -1,25 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
-using Navigator.Annotations;
-using Navigator.StaticRegisters.FramesRegister;
-using Prism.Commands;
+using Navigator.Navigation.History;
+using Navigator.NavigationEventsHandler;
 using PropertyChanged;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable MemberCanBeProtected.Global
 // ReSharper disable MemberCanBePrivate.Global BINDABLE PROPS
 
-namespace Navigator
+namespace Navigator.Navigation
 {
     [ImplementPropertyChanged]
+    // ReSharper disable once ClassNeverInstantiated.Global
     public class NavigationManager
     {
         #region Properties
