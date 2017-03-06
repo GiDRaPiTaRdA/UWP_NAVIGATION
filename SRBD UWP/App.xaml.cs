@@ -39,7 +39,7 @@ namespace SRBD_UWP
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
 
-           PagesLoader.LoadImports(); //LOAD Pages
+         
         }
 
         /// <summary>
@@ -49,6 +49,8 @@ namespace SRBD_UWP
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+             PagesLoader.LoadImports(); //LOAD Pages
+
             /////////////////////////////////////////////////////////////////// FRAME COUNTER
             //#if DEBUG
             //            if (System.Diagnostics.Debugger.IsAttached)
