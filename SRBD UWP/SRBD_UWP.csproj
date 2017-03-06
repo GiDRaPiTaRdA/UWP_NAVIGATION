@@ -149,6 +149,10 @@
       <Project>{72ed367a-d89a-48a1-a702-6ccfce8eeefa}</Project>
       <Name>AssetsLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GlobalMenu\GlobalMenu.csproj">
+      <Project>{b6f13b71-0102-4998-8038-40eba441cdf2}</Project>
+      <Name>GlobalMenu</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Navigator\Navigator.csproj">
       <Project>{c90f79b0-11db-4a0a-a0a5-bacdf71023e2}</Project>
       <Name>Navigator</Name>
@@ -156,10 +160,6 @@
     <ProjectReference Include="..\Static\Static.csproj">
       <Project>{7e4cb57b-7fb7-4330-9eb1-2f450b4a7299}</Project>
       <Name>Static</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TEMP_MY\GlobalMenu\GlobalMenu.csproj">
-      <Project>{b6f13b71-0102-4998-8038-40eba441cdf2}</Project>
-      <Name>GlobalMenu</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
