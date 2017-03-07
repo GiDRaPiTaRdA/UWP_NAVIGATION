@@ -6,6 +6,7 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Navigator.Navigation.History;
 using Navigator.NavigationEventsHandler;
+using Navigator.PagesManagment;
 using PropertyChanged;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -28,14 +29,15 @@ namespace Navigator.Navigation
         /// </summary>
         public NavigationHistory History { get; }
         /// <summary>
-        /// Loaded pages
+        /// this obj contains list of pages in it and operation with them
         /// </summary>
-        public Page[] Pages { get; private set; }
+        public PagesManager PagesManager { get; }
         #endregion
 
         public NavigationManager()
         {
             this.History =  new NavigationHistory();
+            this.PagesManager =  new PagesManager();
             this.NavigationEventHandler = new NavigationEventHandler();
         }
 
@@ -59,6 +61,16 @@ namespace Navigator.Navigation
             this.GoHistoryItem(targetType);
 
             this.RaizeOnNavigated(targetType, frame);
+        }
+
+        /// <summary>
+        /// Navigate frame to type by string
+        /// </summary>
+        public void NavigateFrame(Frame frame, string pageName)
+        {
+            Page page = this.PagesManager.GetPageByString(pageName);
+
+            this.NavigateFrame(frame,page.GetType());
         }
 
         /// <summary>
@@ -193,11 +205,6 @@ namespace Navigator.Navigation
         /// <param name="frame">frame</param>
         private void RaizeOnNavigated(Type pageType, Frame frame) =>
              this.NavigationEventHandler?.OnNavigated(pageType);
-
-        public void InitializePages(Page[] pages)
-        {
-            this.Pages = pages;
-        }
         #endregion
     }
 }

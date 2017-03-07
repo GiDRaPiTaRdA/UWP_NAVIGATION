@@ -35,7 +35,7 @@ namespace Navigator.Navigation
         {
             if (pagesTemporaryStorage != null)
             {
-                LazyNavigationManager.Value.InitializePages(pagesTemporaryStorage);
+                LazyNavigationManager.Value.PagesManager.InitializePages(pagesTemporaryStorage);
                 pagesTemporaryStorage = null;
             }
         }

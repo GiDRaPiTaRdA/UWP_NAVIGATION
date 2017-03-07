@@ -22,7 +22,7 @@ namespace MainMenu.ViewModel
             this.NavigateCommand =
                 new DelegateCommand(() =>
                 NavigationWrapper.NavigationManager.NavigateFrame(
-                    frame, typeof(BlankPage2)));      
+                    frame,typeof(BlankPage2).FullName));      
                           
         }
     }
