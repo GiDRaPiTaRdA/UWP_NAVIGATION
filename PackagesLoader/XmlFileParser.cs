@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Xml;
 using Windows.Storage;
 
-namespace SRBD_UWP.PackagesConfig
+namespace SRBD_UWP.PackagesLoader
 {
     public class XmlFileParser
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace SRBD_UWP.PackagesConfig
+namespace SRBD_UWP.PackagesLoader
 {
     public class ModuleContainer 
     {

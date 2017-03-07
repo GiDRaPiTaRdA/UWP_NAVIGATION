@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.Xaml.Navigation;
 using Navigator.Navigation.History;
 using Navigator.NavigationEventsHandler;
 using PropertyChanged;
@@ -26,6 +27,10 @@ namespace Navigator.Navigation
         /// History of navigation
         /// </summary>
         public NavigationHistory History { get; }
+        /// <summary>
+        /// Loaded pages
+        /// </summary>
+        public Page[] Pages { get; private set; }
         #endregion
 
         public NavigationManager()
@@ -188,6 +193,11 @@ namespace Navigator.Navigation
         /// <param name="frame">frame</param>
         private void RaizeOnNavigated(Type pageType, Frame frame) =>
              this.NavigationEventHandler?.OnNavigated(pageType);
+
+        public void InitializePages(Page[] pages)
+        {
+            this.Pages = pages;
+        }
         #endregion
     }
 }

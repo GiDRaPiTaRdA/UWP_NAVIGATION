@@ -1,18 +1,18 @@
 ﻿using System.IO;
 using System.Linq;
 using Windows.UI.Xaml.Controls;
-using SRBD_UWP.ImportManager;
-using SRBD_UWP.PackagesConfig;
+using ImportManager;
+using SRBD_UWP.PackagesLoader;
 
 namespace SRBD_UWP.PagesManager
 {
     public static class PagesLoader
     {
-        public static Page[] Pages { get; set; }
-
-        public static void LoadImports()
+        public static Page[] LoadImportingPages()
         {
-            Pages = ImportsLoader.ImportObjects<Page>(AssemblyLoader.getAssemblies(Directory.GetCurrentDirectory())).ToArray(); 
+            AssemblyLoader assemblyLoader =  new AssemblyLoader("LoadingModulesConfig.xml");
+            var pages = ImportsLoader.ImportObjects<Page>(assemblyLoader.getAssemblies()).ToArray();
+            return pages;
         }
         
     }

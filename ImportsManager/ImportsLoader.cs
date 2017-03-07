@@ -8,7 +8,7 @@ using Windows.ApplicationModel.Contacts;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace SRBD_UWP.ImportManager
+namespace ImportManager
 {
     public static class ImportsLoader
     {

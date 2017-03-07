@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Composition;
-using System.IO;
 using System.Threading.Tasks;
-using Windows.Foundation.Metadata;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Prism.Commands;
-using Navigator;
 using Navigator.Navigation;
-using SRBD_UWP.PackagesConfig;
-using SRBD_UWP.ImportManager;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
