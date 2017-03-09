@@ -12,15 +12,25 @@ namespace MainMenu.View
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     [Export(typeof(Page))]
-    public sealed partial class MainPage : Page 
-    {  
+    public sealed partial class MainPage : Page
+    {
+        private bool dataContextInitialzed;
+
         public MainPage()
         {
             this.InitializeComponent();
 
-            this.Loaded += (sender, args) => this.DataContext = new MainMenuViewModel(this.Frame);
+            this.Loaded += (sender, args) =>
+                           {
+                               if (!this.dataContextInitialzed)
+                               {
+                                   this.DataContext = new MainMenuViewModel(this.Frame);
+                                   this.dataContextInitialzed = true;
+                               }
+                           
+                           };
 
-            
+
         }
     }
 }

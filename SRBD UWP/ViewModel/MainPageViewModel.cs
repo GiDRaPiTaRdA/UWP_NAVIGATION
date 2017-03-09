@@ -25,7 +25,7 @@ namespace SRBD_UWP.ViewModel
         {
             this.NavigateToGlobalMenuCommand =  new DelegateCommand(() =>
             NavigationWrapper.NavigationManager.NavigateFrameSilent(
-                Window.Current.Content as Frame, typeof(GlobalMenu.View.MainPage)));
+                Window.Current.Content as Frame, typeof(GlobalMenu.View.MainPage).FullName));
 
             this.ExitAppCommand = new DelegateCommand(Exit);    
         }

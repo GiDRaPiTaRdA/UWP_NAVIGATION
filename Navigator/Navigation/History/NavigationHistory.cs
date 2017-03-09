@@ -35,6 +35,8 @@ namespace Navigator.Navigation.History
         #endregion
 
         #region Operations on history
+
+        #region Operations TYPE
         /// <summary>
         /// Adds page type to the history
         /// </summary>
@@ -60,15 +62,10 @@ namespace Navigator.Navigation.History
         internal bool Remove(Type frameType)
         {
             bool result = this.FrameNavigationHistory.Remove(
-                this.FrameNavigationHistory.FirstOrDefault(t => t.PageType.FullName == frameType.FullName));
+                this.FrameNavigationHistory.FirstOrDefault(t => t.PageName == frameType.FullName));
 
             return result;
         }
-
-        /// <summary>
-        /// Clears list from values and resets index to -1
-        /// </summary>
-        public void Clear() => this.FrameNavigationHistory.Clear();
 
         public void ClearAfter(Type frameType)
         {
@@ -78,7 +75,7 @@ namespace Navigator.Navigation.History
             { 
                 resultingHistoryRecords.AddLast(historyRecord);
 
-                if (historyRecord.PageType.FullName == frameType.FullName)
+                if (historyRecord.PageName == frameType.FullName)
                 {
                     this.FrameNavigationHistory = resultingHistoryRecords;
                     return;
@@ -86,6 +83,62 @@ namespace Navigator.Navigation.History
                    
             }
         }
+        #endregion
+
+        #region Operations STRING
+        /// <summary>
+        /// Adds page type to the history
+        /// </summary>
+        /// <param name="typeName">Adding frame type name</param>
+        /// <returns>success of the operation</returns>
+        internal bool Add(string typeName)
+        {
+            bool result = false;
+            if (!String.IsNullOrWhiteSpace(typeName))
+            {
+                this.FrameNavigationHistory.AddLast(new HistoryRecord(typeName));
+                result = true;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Removes specified page type from the page types list (history)
+        /// </summary>
+        /// <param name="typeName">Removing type name</param>
+        /// <returns>success of the operation</returns>
+        internal bool Remove(string typeName)
+        {
+            bool result = this.FrameNavigationHistory.Remove(
+                this.FrameNavigationHistory.FirstOrDefault(t => t.PageName == typeName));
+
+            return result;
+        }
+
+        public void ClearAfter(string frameName)
+        {
+            LinkedList<HistoryRecord> resultingHistoryRecords = new LinkedList<HistoryRecord>();
+
+            foreach (var historyRecord in this.FrameNavigationHistory)
+            {
+                resultingHistoryRecords.AddLast(historyRecord);
+
+                if (historyRecord.PageName == frameName)
+                {
+                    this.FrameNavigationHistory = resultingHistoryRecords;
+                    return;
+                }
+
+            }
+        }
+        #endregion
+
+        /// <summary>
+        /// Clears list from values and resets index to -1
+        /// </summary>
+        public void Clear() => this.FrameNavigationHistory.Clear();
+
         #endregion
 
         #region GetInfoAboutHistory

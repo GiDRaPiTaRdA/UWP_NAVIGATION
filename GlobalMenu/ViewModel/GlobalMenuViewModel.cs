@@ -37,7 +37,7 @@ namespace GlobalMenu.ViewModel
 
             this.NavigationFrame = new NavigationFrame(frame,nestedFrame);
 
-            NavigationWrapper.NavigationManager.NavigateFrame(nestedFrame, typeof(MainMenu.View.MainPage));
+            NavigationWrapper.NavigationManager.NavigateFrame(nestedFrame, typeof(MainMenu.View.MainPage).FullName);
             
 
             this.InitializeDelegateCommands();
@@ -52,7 +52,7 @@ namespace GlobalMenu.ViewModel
 
         private void InitializeDelegateCommands()
         {
-            this.NavigateCommand = new DelegateCommand<HistoryRecord>((h) => NavigationWrapper.NavigationManager.NavigateFrame(this.NavigationFrame.CurrentFrame, h.PageType));
+            this.NavigateCommand = new DelegateCommand<HistoryRecord>((h) => NavigationWrapper.NavigationManager.NavigateFrame(this.NavigationFrame.CurrentFrame, h.PageName));
 
             this.GoBack = new DelegateCommand(() => NavigationWrapper.NavigationManager.NavigateBack(this.NavigationFrame.CurrentFrame,this.NavigationFrame.NestedFrame),
                                               () => NavigationWrapper.NavigationManager.CanNavigateBack());

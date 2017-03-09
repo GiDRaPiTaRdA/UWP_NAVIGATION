@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using System;
+using Windows.UI.Xaml.Controls;
 
 namespace Navigator.PagesManagment
 {
@@ -22,6 +23,12 @@ namespace Navigator.PagesManagment
                 }
             }
             return pageResult;
+        }
+
+        public Type GetTypeOfPageByString(string pageName)
+        {
+            Type type = this.GetPageByString(pageName).GetType();
+            return type;
         }
     }
 }

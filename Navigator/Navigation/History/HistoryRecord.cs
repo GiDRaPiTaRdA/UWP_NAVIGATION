@@ -4,19 +4,20 @@ namespace Navigator.Navigation.History
 {
     public class HistoryRecord
     {
-        public HistoryRecord() : this(null) { }
         public HistoryRecord(Type pageType)
         {
-            this.PageType = pageType;
+            this.PageName = pageType.FullName;
+        }
+        public HistoryRecord(string pageName)
+        {
+            this.PageName = pageName;
         }
 
-        public Type PageType { get; private set; }
-
-        public string PageTitle => this.PageType.Name;
+        public string PageName { get; private set; }
 
         public override bool Equals(object obj)
         {
-            return this.PageType.FullName == (obj as HistoryRecord)?.PageType.FullName;
+            return this.PageName == (obj as HistoryRecord)?.PageName;
         }
     }
 }

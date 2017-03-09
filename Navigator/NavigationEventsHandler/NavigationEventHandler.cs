@@ -6,9 +6,9 @@ namespace Navigator.NavigationEventsHandler
     {
         public event EventHandler EventHandler;
 
-        public void OnNavigated(Type pageType)
+        public void OnNavigated(string pageFullName)
         {
-            this.EventHandler?.Invoke(this,new NavigationArgs(pageType));
+            this.EventHandler?.Invoke(this,new NavigationArgs(pageFullName));
         }
     }
 }

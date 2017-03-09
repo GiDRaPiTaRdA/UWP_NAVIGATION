@@ -13,7 +13,7 @@ namespace MainMenu.ViewModel
     {
         public ObservableCollection<MainMenuPageButton> MainMenuPageButtonsList { get; set; }
 
-        public DelegateCommand<object> NavigateCurrentCommand { get; set; }
+    public DelegateCommand<object> NavigateCurrentCommand { get; set; }
 
         public NavigationFrame NaviFrame { get; set; }
 
@@ -21,7 +21,6 @@ namespace MainMenu.ViewModel
             : this(frame: null){ }
         public MainMenuViewModel(Frame frame = null)
         {
-            
             if(frame!=null)
                 this.NaviFrame = new NavigationFrame(frame);
 
@@ -34,17 +33,16 @@ namespace MainMenu.ViewModel
                 new DelegateCommand<object>(obj =>
                                             {
 
-                                                NavigationWrapper.NavigationManager.History.ClearAfter(typeof(MainPage));
+                                                NavigationWrapper.NavigationManager.History.ClearAfter(typeof(MainPage).FullName);
 
                                                 NavigationWrapper.NavigationManager.NavigateFrame(
                                                     this.NaviFrame?.CurrentFrame,
-                                                    ((MainMenuPageButton)obj).NavigationPageType);
+                                                    ((MainMenuPageButton)obj).NavigationPageType.FullName);
 
                                                 
-                                            }
+                                            });
 
-    );
-
+            if(this.MainMenuPageButtonsList==null)
             this.MainMenuPageButtonsList = new ObservableCollection<MainMenuPageButton>()
             {
                    new MainMenuPageButton(typeof(BlankPage1),"TITLE0","../TileIcons/LockScreenLogo.png"),

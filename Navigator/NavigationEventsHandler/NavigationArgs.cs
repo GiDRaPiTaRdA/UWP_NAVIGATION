@@ -8,10 +8,10 @@ namespace Navigator.NavigationEventsHandler
     public class NavigationArgs : EventArgs
     {
         public NavigationArgs() : this(null) { }
-        public NavigationArgs(Type navigatedPageType)
+        public NavigationArgs(string navigatedPageFullName)
         {
-            this.NavigatedPageType = navigatedPageType;
+            this.NavigatedPageFullName = navigatedPageFullName;
         }
-        public Type NavigatedPageType { get; set; }
+        public string NavigatedPageFullName { get; set; }
     }
 }
