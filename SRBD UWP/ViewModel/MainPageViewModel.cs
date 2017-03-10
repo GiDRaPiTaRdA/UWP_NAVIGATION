@@ -5,6 +5,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Prism.Commands;
 using Navigator.Navigation;
+using Notifications;
 
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -32,30 +33,9 @@ namespace SRBD_UWP.ViewModel
 
         private static async void Exit()
         {
-            if (await YesNoAsyncDialog("Do you want to leave the application?", "Leaving the app"))
+            if (await NotificationManager.YesNoAsyncDialog("Do you want to leave the application?", "Leaving the app"))
                 Application.Current.Exit();
         }
-        private static async Task<bool> YesNoAsyncDialog(string message, string title)
-        {
-            var dialog = new MessageDialog(message, title);
-            dialog.Commands.Add(new UICommand("Yes") { Id = 0 });
-            dialog.Commands.Add(new UICommand("No") { Id = 1 });
-            dialog.DefaultCommandIndex = 0;
-            dialog.CancelCommandIndex = 1;
-            var dialogResult = await dialog.ShowAsync();
-            if ((int)dialogResult.Id == 0)
-                return true;
-            else
-                return false;
-        }
-        private static async Task Notification(string message, string title = null)
-        {
-            if (title != null)
-            {
-                var dialog = new MessageDialog(message, title);
-                dialog.Commands.Add(new UICommand("Ok"));
-                await dialog.ShowAsync();
-            }
-        }
+
     }
 }

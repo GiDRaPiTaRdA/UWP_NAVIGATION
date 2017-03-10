@@ -24,6 +24,8 @@
 
     <Page.Resources>
 
+        <x:Double x:Key="BasicSize">50</x:Double>
+        
         <DataTemplate x:Key="GlobalMenuButtonTemplate">
             <Grid Height="200"
                   Width="200"
@@ -61,13 +63,15 @@
     </Page.Resources>
 
         <!-- Content Region -->
-        <Grid x:Name="Grid">
+    <Grid x:Name="Grid"
+          >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0">
+        <Grid Grid.Row="0"
+              Background="WhiteSmoke">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
@@ -75,13 +79,19 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <AppBarButton Grid.Column="0"
-                              Content="Home"
-                              Command="{Binding GoHome}" />
+                          Height="{StaticResource BasicSize}"
+                          Width="{StaticResource BasicSize}"
+                          Icon="Home"
+                          Command="{Binding GoHome}" />
                 <AppBarButton Grid.Column="1"
-                              Content="Back"
-                              Command="{Binding GoBack}" />
+                          Height="{StaticResource BasicSize}"
+                          Width="{StaticResource BasicSize}"
+                          Icon="Back"
+                          Command="{Binding GoBack}" />
             <AppBarButton Grid.Column="2"
-                          Content="Front"
+                          Height="{StaticResource BasicSize}"
+                          Width="{StaticResource BasicSize}"
+                          Icon="Forward"
                           Command="{Binding GoForward}" />
             <ListView Grid.Column="3"
                       ItemsSource="{Binding History}"
@@ -100,7 +110,7 @@
         </Grid>
 
 
-        <Frame x:Name="NestedFrame"
+        <Frame x:Name="NestedFrame" Margin="5"
             Grid.Row="1"
                                    SourcePageType="{Binding Path=NavigationFrame.NestedPageType,
                 Mode=TwoWay,

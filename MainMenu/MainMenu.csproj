@@ -113,6 +113,7 @@
     <Compile Include="ViewModel\BlankPage3ViewModel.cs" />
     <Compile Include="ViewModel\BlankPage2ViewModel.cs" />
     <Compile Include="ViewModel\BlankPage1ViewModel.cs" />
+    <Compile Include="ViewModel\AditionalMenuViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="View\BlankPage3.xaml.cs">
       <DependentUpon>BlankPage3.xaml</DependentUpon>
@@ -126,6 +127,12 @@
     <Compile Include="View\BlankPage2.xaml.cs">
       <DependentUpon>BlankPage2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AditionalMenu.xaml.cs">
+      <DependentUpon>AditionalMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ImageTest.xaml.cs">
+      <DependentUpon>ImageTest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -133,7 +140,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="TileIcons\kartinka-zastavka.orig.jpg" />
-    <Content Include="TileIcons\LockScreenLogo.png" />
+    <Content Include="TileIcons\LockScreenLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="TileIcons\SplashScreen.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +159,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\BlankPage2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AditionalMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ImageTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,6 +187,10 @@
     <ProjectReference Include="..\Navigator\Navigator.csproj">
       <Project>{c90f79b0-11db-4a0a-a0a5-bacdf71023e2}</Project>
       <Name>Navigator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Notifications\Notifications.csproj">
+      <Project>{bee652b0-2699-4cd8-bb18-ca36f50cc207}</Project>
+      <Name>Notifications</Name>
     </ProjectReference>
     <ProjectReference Include="..\Static\Static.csproj">
       <Project>{7e4cb57b-7fb7-4330-9eb1-2f450b4a7299}</Project>

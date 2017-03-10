@@ -52,7 +52,8 @@ namespace GlobalMenu.ViewModel
 
         private void InitializeDelegateCommands()
         {
-            this.NavigateCommand = new DelegateCommand<HistoryRecord>((h) => NavigationWrapper.NavigationManager.NavigateFrame(this.NavigationFrame.CurrentFrame, h.PageName));
+            this.NavigateCommand = new DelegateCommand<HistoryRecord>(
+                (h) => NavigationWrapper.NavigationManager.NavigateFrame(this.NavigationFrame.CurrentFrame, h.PageName));
 
             this.GoBack = new DelegateCommand(() => NavigationWrapper.NavigationManager.NavigateBack(this.NavigationFrame.CurrentFrame,this.NavigationFrame.NestedFrame),
                                               () => NavigationWrapper.NavigationManager.CanNavigateBack());

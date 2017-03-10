@@ -13,11 +13,11 @@ namespace MainMenu.View
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     [Export(typeof(Page))]
-    public sealed partial class MainPage : Page
+    public sealed partial class AditionalMenu : Page
     {
         private bool dataContextInitialzed;
 
-        public MainPage()
+        public AditionalMenu()
         {
             this.InitializeComponent();
 
@@ -26,24 +26,12 @@ namespace MainMenu.View
                            {
                                if (!this.dataContextInitialzed)
                                {
-                                   this.DataContext = new MainMenuViewModel(this.Frame);
+                                   this.DataContext = new AditionalMenuViewModel(this.Frame);
                                    this.dataContextInitialzed = true;
                                }
                            };
 
         }
-
-        private async void Image_OnImageFailed(object sender, ExceptionRoutedEventArgs e)
-        {
-            await Notifications.NotificationManager.Notification("Failed to load "+ e?.ErrorMessage);
-        }
-
-        private async void Image_OnImageOpened(object sender, RoutedEventArgs e)
-        {
-            await Notifications.NotificationManager.Notification("Opened");
-        }
-
-        
     }
 }
 

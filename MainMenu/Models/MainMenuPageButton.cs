@@ -8,15 +8,21 @@ namespace MainMenu.Models
 {
     public class MainMenuPageButton
     {
-        public Type NavigationPageType { get; set; }
+        public string NavigationPageName { get; set; }
         public string Title { get; set; }
         public string History { get; set; }
         public string Image { get; set; }
 
         public MainMenuPageButton() {}
+        public MainMenuPageButton(string page, string title = null, string image = null)
+        {
+            this.NavigationPageName = page;
+            this.Title = title;
+            this.Image = image;
+        }
         public MainMenuPageButton(Type page, string title = null, string image = null)
         {
-            this.NavigationPageType = page;
+            this.NavigationPageName = page.FullName;
             this.Title = title;
             this.Image = image;
         }

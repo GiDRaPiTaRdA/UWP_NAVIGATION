@@ -19,5 +19,10 @@ namespace Navigator.Navigation.History
         {
             return this.PageName == (obj as HistoryRecord)?.PageName;
         }
+
+        public override string ToString()
+        {
+            return this.PageName;
+        }
     }
 }

@@ -32,26 +32,28 @@ namespace MainMenu.ViewModel
             this.NavigateCurrentCommand =
                 new DelegateCommand<object>(obj =>
                                             {
+                                                if (!string.IsNullOrWhiteSpace(((MainMenuPageButton)obj).NavigationPageName))
+                                                {
 
-                                                NavigationWrapper.NavigationManager.History.ClearAfter(typeof(MainPage).FullName);
+                                                    NavigationWrapper.NavigationManager.History.ClearAfter(typeof(MainPage).FullName);
 
-                                                NavigationWrapper.NavigationManager.NavigateFrame(
-                                                    this.NaviFrame?.CurrentFrame,
-                                                    ((MainMenuPageButton)obj).NavigationPageType.FullName);
+                                                    NavigationWrapper.NavigationManager.NavigateFrame(
+                                                        this.NaviFrame?.CurrentFrame,
+                                                        ((MainMenuPageButton)obj).NavigationPageName);
+                                                }
 
-                                                
                                             });
 
             if(this.MainMenuPageButtonsList==null)
             this.MainMenuPageButtonsList = new ObservableCollection<MainMenuPageButton>()
             {
-                   new MainMenuPageButton(typeof(BlankPage1),"TITLE0","../TileIcons/LockScreenLogo.png"),
-                   new MainMenuPageButton(typeof(BlankPage2),"TITLE1","../TileIcons/LockScreenLogo.png"),
-                   new MainMenuPageButton(typeof(BlankPage3),"TITLE2","../TileIcons/LockScreenLogo.png"),
-                   new MainMenuPageButton(typeof(BlankPage4),"TITLE3","../TileIcons/LockScreenLogo.png"),
-                   new MainMenuPageButton(typeof(BlankPage1)),
-                   new MainMenuPageButton(typeof(BlankPage1)),
-                   new MainMenuPageButton(typeof(BlankPage1)),
+                   //new MainMenuPageButton(typeof(BlankPage1),"TITLE0",@"C:\Users\Admin\Documents\Visual Studio 2015\Projects\SRBD UWP\MainMenu\TileIcons\LockScreenLogo.png"),
+                   //new MainMenuPageButton(typeof(BlankPage2),"TITLE1","../TileIcons/LockScreenLogo.png"),
+                   //new MainMenuPageButton(typeof(ImageTest),"Image Test","../TileIcons/LockScreenLogo.png"),
+                   //new MainMenuPageButton(),
+                   //new MainMenuPageButton(),
+                   //new MainMenuPageButton(),
+                   new MainMenuPageButton(typeof(AditionalMenu),"MENU","../TileIcons/LockScreenLogo.png"),
             };
         }
     }
