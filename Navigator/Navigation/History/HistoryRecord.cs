@@ -24,5 +24,10 @@ namespace Navigator.Navigation.History
         {
             return this.PageName;
         }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

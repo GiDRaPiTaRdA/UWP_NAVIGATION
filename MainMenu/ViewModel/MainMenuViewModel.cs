@@ -44,16 +44,18 @@ namespace MainMenu.ViewModel
 
                                             });
 
-            if(this.MainMenuPageButtonsList==null)
+            string imagePath = "ms-appx:///MainMenu/TileIcons/SplashScreen.scale-200.png";
+
+            if (this.MainMenuPageButtonsList==null)
             this.MainMenuPageButtonsList = new ObservableCollection<MainMenuPageButton>()
             {
-                   //new MainMenuPageButton(typeof(BlankPage1),"TITLE0",@"C:\Users\Admin\Documents\Visual Studio 2015\Projects\SRBD UWP\MainMenu\TileIcons\LockScreenLogo.png"),
-                   //new MainMenuPageButton(typeof(BlankPage2),"TITLE1","../TileIcons/LockScreenLogo.png"),
-                   //new MainMenuPageButton(typeof(ImageTest),"Image Test","../TileIcons/LockScreenLogo.png"),
-                   //new MainMenuPageButton(),
-                   //new MainMenuPageButton(),
-                   //new MainMenuPageButton(),
-                   new MainMenuPageButton(typeof(AditionalMenu),"MENU","../TileIcons/LockScreenLogo.png"),
+                   new MainMenuPageButton(typeof(BlankPage1),"TITLE0",imagePath),
+                   new MainMenuPageButton(typeof(BlankPage2),"TITLE1",imagePath),
+                   new MainMenuPageButton(typeof(ImageTest),"Image Test",imagePath),
+                   new MainMenuPageButton(),
+                   new MainMenuPageButton(),
+                   new MainMenuPageButton(),
+                   new MainMenuPageButton(typeof(AditionalMenu),"MENU",imagePath),
             };
         }
     }

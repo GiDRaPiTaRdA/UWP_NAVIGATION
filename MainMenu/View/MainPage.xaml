@@ -11,6 +11,7 @@
             <Grid Height="200"
                   Width="200"
                   Margin="5"
+                  Padding="10"
                   
                   Background="{StaticResource  ButtonColor}"
                   BorderBrush="{StaticResource IconPathColor}"
@@ -26,8 +27,8 @@
                            Foreground="White"
                            Text="{Binding Path= Title}" />
                 <Image Grid.Row="1"
-                       Margin="20"
-                       Source="C:\Users\Admin\Documents\Visual Studio 2015\Projects\SRBD UWP\MainMenu\TileIcons\LockScreenLogo.png"
+                       Margin="10"
+                       Source="{Binding Path=Image}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        Stretch="UniformToFill"
@@ -35,25 +36,39 @@
                        ImageFailed="Image_OnImageFailed" />
             </Grid>
 
-            <!--<Image 
-                ImageOpened="Image_OnImageOpened"
-                ImageFailed="Image_OnImageFailed"
-                   Source="http://pulson.ru/wp-content/uploads/2014/07/wallpaper-1013331.jpg"
-                 />-->
         </DataTemplate>
 
     </Page.Resources>
     <Grid>
-        <controls:TileMenu ItemTemplate="{StaticResource MenuButtonTemplate}"
-                            ItemsSource="{Binding MainMenuPageButtonsList, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                            CanReorderItems="True"
-                            CanDragItems="True"
-                            AllowDrop="True"
-                            SelectionMode="None"
-                            ItemClick="{Binding NavigateCurrentCommand}"
-                           >
-            
+        <controls:TileMenu 
+            ItemTemplate="{StaticResource MenuButtonTemplate}"
+            ItemsSource="{Binding MainMenuPageButtonsList, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                           CanReorderItems="True"
+                           CanDragItems="True"
+                           AllowDrop="True"
+                           SelectionMode="None"
+                           ItemClick="{Binding NavigateCurrentCommand}">
         </controls:TileMenu>
+
+        <!--<GridView ItemsSource="{Binding MainMenuPageButtonsList, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                  CanReorderItems="True"
+                  CanDragItems="True"
+                  AllowDrop="True"
+                  SelectionMode="None">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Image ImageOpened="Image_OnImageOpened"
+                       ImageFailed="Image_OnImageFailed"
+                       Source="../TileIcons/SplashScreen.png" />
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>-->
+
+
+        <!--<Image ImageOpened="Image_OnImageOpened"
+               ImageFailed="Image_OnImageFailed"
+               Source="../TileIcons/SplashScreen.png" />-->
+
     </Grid>
 
 </Page>

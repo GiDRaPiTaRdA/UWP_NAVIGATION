@@ -67,8 +67,6 @@ namespace Controls
             this.InitializeComponent();
 
             this.MyGridView.ItemClick += this.MyGridView_ItemClick;
-
-            //this.root.DataContext = this;
         }
 
         private void MyGridView_ItemClick(object sender, ItemClickEventArgs e)

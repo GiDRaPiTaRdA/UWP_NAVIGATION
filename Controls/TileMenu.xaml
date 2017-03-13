@@ -7,14 +7,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
 
     <GridView x:Name="MyGridView"
-              ItemTemplate="{Binding ItemTemplate, ElementName=root}"
+              ItemTemplate="{Binding ItemTemplate,ElementName=root , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
               ItemsSource="{Binding ItemsSource, ElementName=root}"
               CanReorderItems="{Binding CanReorderItems, ElementName=root}"
               CanDragItems="{Binding CanDragItems, ElementName=root}"
               AllowDrop="True"
               IsItemClickEnabled="True"
               SelectionMode="{Binding SelectionMode, ElementName=root}">
-        
     </GridView>
 
 

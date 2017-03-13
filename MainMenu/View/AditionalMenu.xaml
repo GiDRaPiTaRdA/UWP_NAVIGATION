@@ -5,7 +5,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-      xmlns:mainmenu="using:Controls"
+      xmlns:controls="using:Controls"
       x:Name="root"
       mc:Ignorable="d">
 
@@ -14,6 +14,7 @@
             <Grid Height="200"
                   Width="200"
                   Margin="5"
+                  Padding="10"
                   IsHitTestVisible="True"
                   Background="{StaticResource  ButtonColor}"
                   BorderBrush="{StaticResource IconPathColor}"
@@ -22,17 +23,11 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Grid.ChildrenTransitions>
-                    <TransitionCollection>
-                        <EntranceThemeTransition FromHorizontalOffset="100" />
-                    </TransitionCollection>
-                </Grid.ChildrenTransitions>
-
                 <TextBlock Grid.Row="0"
                            Foreground="White"
                            Text="{Binding Path= Title}" />
                 <Image Grid.Row="1"
-                       Margin="20"
+                       Margin="10"
                        Source="{Binding Path=Image}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center" />
@@ -42,7 +37,7 @@
 
     </Page.Resources>
     <Grid>
-        <mainmenu:TileMenu  ItemTemplate="{StaticResource MenuButtonTemplate}"
+        <controls:TileMenu  ItemTemplate="{StaticResource MenuButtonTemplate}"
                         ItemsSource="{Binding MainMenuPageButtonsList, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                         CanReorderItems="True"
                         CanDragItems="True"

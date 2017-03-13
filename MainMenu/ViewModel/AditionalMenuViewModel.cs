@@ -42,13 +42,15 @@ namespace MainMenu.ViewModel
                                                 
                                             });
 
-            if(this.MainMenuPageButtonsList==null)
+            string imagePath = "ms-appx:///MainMenu/TileIcons/SplashScreen.scale-200.png";
+
+            if (this.MainMenuPageButtonsList==null)
             this.MainMenuPageButtonsList = new ObservableCollection<MainMenuPageButton>()
             {
-                   new MainMenuPageButton(typeof(BlankPage1),"TITLE0","../TileIcons/LockScreenLogo.png"),
-                   new MainMenuPageButton(typeof(BlankPage2),"TITLE1","../TileIcons/LockScreenLogo.png"),
-                   new MainMenuPageButton(typeof(BlankPage3),"TITLE2","../TileIcons/LockScreenLogo.png"),
-                   new MainMenuPageButton(typeof(BlankPage4),"TITLE3","../TileIcons/LockScreenLogo.png"),
+                   new MainMenuPageButton(typeof(BlankPage1),"TITLE0",imagePath),
+                   new MainMenuPageButton(typeof(BlankPage2),"TITLE1",imagePath),
+                   new MainMenuPageButton(typeof(BlankPage3),"TITLE2",imagePath),
+                   new MainMenuPageButton(typeof(BlankPage4),"TITLE3",imagePath),
                    
             };
         }
