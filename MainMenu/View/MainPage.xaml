@@ -4,18 +4,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:controls="using:Controls"
-      mc:Ignorable="d">
+      mc:Ignorable="d"
+      Style="{StaticResource SlideNavigationTransitionPageStyle}">
 
-    <Page.Transitions>
-        <TransitionCollection>
-            <NavigationThemeTransition>
-                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                    <SlideNavigationTransitionInfo />
-                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
-            </NavigationThemeTransition>
-        </TransitionCollection>
-    </Page.Transitions>
-    
     <Page.Resources>
         <DataTemplate x:Key="MenuButtonTemplate">
             <Grid Height="200"

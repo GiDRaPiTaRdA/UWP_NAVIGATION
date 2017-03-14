@@ -1,0 +1,33 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Style x:Name="ContinuumNavigationTransitionPageStyle" TargetType="Page">
+        <Setter Property="Transitions"
+                Value="{StaticResource ContinuumNavigationTransition}" />
+    </Style>
+
+    <Style x:Name="SlideNavigationTransitionPageStyle"
+           TargetType="Page">
+        <Setter Property="Transitions"
+                Value="{StaticResource SlideNavigationTransition}" />
+    </Style>
+
+    
+    <TransitionCollection x:Name="ContinuumNavigationTransition">
+        <NavigationThemeTransition>
+            <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                <ContinuumNavigationTransitionInfo />
+            </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+        </NavigationThemeTransition>
+    </TransitionCollection>
+
+    <TransitionCollection x:Name="SlideNavigationTransition">
+        <NavigationThemeTransition>
+            <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                <SlideNavigationTransitionInfo />
+            </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+        </NavigationThemeTransition>
+    </TransitionCollection>
+
+</ResourceDictionary>

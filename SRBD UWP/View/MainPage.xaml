@@ -4,40 +4,19 @@
       xmlns:local="using:SRBD_UWP.View"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      mc:Ignorable="d">
-
-    <Page.Transitions>
-        <TransitionCollection>
-            <NavigationThemeTransition>
-                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                    <ContinuumNavigationTransitionInfo />
-                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
-            </NavigationThemeTransition>
-        </TransitionCollection>
-    </Page.Transitions>
-
-
-    <Page.Style>
-        <Style TargetType="Page">
-
-            <Setter Property="Background">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="0,0"
-                                         EndPoint="0,1">
-                        <GradientStop Color="{Binding Source={StaticResource MainNormal},Path=Color}"
-                                      Offset="0" />
-                        <GradientStop Color="{Binding Source={StaticResource MainDark},Path=Color}"
-                                      Offset="1" />
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Page.Style>
-
+      mc:Ignorable="d"
+      Style="{StaticResource ContinuumNavigationTransitionPageStyle}">
     
+    <Page.Background>
+        <LinearGradientBrush StartPoint="0,0"
+                             EndPoint="0,1">
+            <GradientStop Color="{Binding Source={StaticResource MainNormal},Path=Color}"
+                          Offset="0" />
+            <GradientStop Color="{Binding Source={StaticResource MainDark},Path=Color}"
+                          Offset="1" />
+        </LinearGradientBrush>
+    </Page.Background>
        
-
-    
     <Grid>
         <!--LOGIN WINDOW-->
         <Border
