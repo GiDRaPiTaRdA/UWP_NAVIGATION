@@ -11,11 +11,12 @@
         <TransitionCollection>
             <NavigationThemeTransition>
                 <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                    <SlideNavigationTransitionInfo />
+                    <ContinuumNavigationTransitionInfo />
                 </NavigationThemeTransition.DefaultNavigationTransitionInfo>
             </NavigationThemeTransition>
         </TransitionCollection>
     </Page.Transitions>
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
           Padding="10">
         <Grid.RowDefinitions>

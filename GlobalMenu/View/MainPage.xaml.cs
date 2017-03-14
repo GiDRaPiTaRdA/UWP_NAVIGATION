@@ -15,7 +15,6 @@ namespace GlobalMenu.View
         public MainPage()
         {
             this.InitializeComponent();
-
             this.Loaded+=(sender, args) => this.DataContext = new GlobalMenuViewModel(this.Frame,this.NestedFrame);
         }
     }

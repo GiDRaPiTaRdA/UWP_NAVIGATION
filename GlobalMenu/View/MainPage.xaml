@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       mc:Ignorable="d"
       x:Name="root">
     <Page.Style>
@@ -25,8 +26,57 @@
     <Page.Resources>
 
         <x:Double x:Key="BasicSize">50</x:Double>
-        
-        <DataTemplate x:Key="GlobalMenuButtonTemplate">
+
+
+        <Style x:Key="RoundedButtonStyle"
+               TargetType="AppBarButton">
+            
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="AppBarButton">
+                        <Border Name="Border"  CornerRadius="15"
+                                Background="#FFE8E8E8"
+                                BorderThickness="1"
+                                BorderBrush="Transparent"
+                                Padding="2">
+                        <ContentPresenter  HorizontalAlignment="Center"
+                                          VerticalAlignment="Center" />
+                        <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0"
+                                                            To="LightGray"
+                                                            Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
+                                                            Storyboard.TargetName="Border"/>
+                                                             <ColorAnimation Duration="0"
+                                                            To="Transparent"
+                                                            Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)"
+                                                            Storyboard.TargetName="Border"
+                                                            />
+                                           
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimation Duration="0"
+                                                            To="White"
+                                                            Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
+                                                            Storyboard.TargetName="Border"/>
+                                         
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                       </Border>
+                    </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+        </Style>
+
+
+        <!--<DataTemplate x:Key="GlobalMenuButtonTemplate">
             <Grid Height="200"
                   Width="200"
                   Margin="5"
@@ -50,16 +100,21 @@
                 </Grid>
 
             </Grid>
-        </DataTemplate>
+        </DataTemplate>-->
+
         <DataTemplate x:Key="BreadCrumbTemplate">
-            <AppBarButton Content="{Binding PageTitle}"
+            <AppBarButton HorizontalAlignment="Center"
+                          Style="{StaticResource RoundedButtonStyle}"
+                          Margin="5"
+                          Width="auto"
+                          Height="40"
                           Command="{Binding DataContext.NavigateCommand, ElementName=root}"
                           CommandParameter="{Binding}">
+                <TextBlock Margin="5,0,5,0"
+                           Text="{Binding PageName}" />
             </AppBarButton>
         </DataTemplate>
-
-      
-        
+    
     </Page.Resources>
 
         <!-- Content Region -->
@@ -93,20 +148,17 @@
                           Width="{StaticResource BasicSize}"
                           Icon="Forward"
                           Command="{Binding GoForward}" />
-            <ListView Grid.Column="3"
+            <ItemsControl Grid.Column="3"
+                          
                       ItemsSource="{Binding History}"
                 ItemTemplate="{StaticResource BreadCrumbTemplate}"
-                      IsItemClickEnabled="False"
-                      AllowDrop="True"
-                      CanDragItems="True"
-                      CanReorderItems="True"
                     >
-                <ListView.ItemsPanel>
+                <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal" />
                     </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
         </Grid>
 
 

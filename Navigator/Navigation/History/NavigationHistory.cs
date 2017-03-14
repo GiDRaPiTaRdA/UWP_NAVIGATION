@@ -149,6 +149,8 @@ namespace Navigator.Navigation.History
         /// <returns>optained type</returns>
         public HistoryRecord GetCurrentPageType() => this.CurrentType;
 
+        public HistoryRecord[] GetHistoryAsArray => this.FrameNavigationHistory.ToArray();
+
         /// <summary>
         /// Counts items in the page types list (history)
         /// </summary>

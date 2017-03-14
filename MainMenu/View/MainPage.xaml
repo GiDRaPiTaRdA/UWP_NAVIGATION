@@ -6,6 +6,16 @@
       xmlns:controls="using:Controls"
       mc:Ignorable="d">
 
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <SlideNavigationTransitionInfo />
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+    
     <Page.Resources>
         <DataTemplate x:Key="MenuButtonTemplate">
             <Grid Height="200"
@@ -27,13 +37,12 @@
                            Foreground="White"
                            Text="{Binding Path= Title}" />
                 <Image Grid.Row="1"
+                       
                        Margin="10"
                        Source="{Binding Path=Image}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       Stretch="UniformToFill"
-                       ImageOpened="Image_OnImageOpened"
-                       ImageFailed="Image_OnImageFailed" />
+                       Stretch="UniformToFill" />
             </Grid>
 
         </DataTemplate>

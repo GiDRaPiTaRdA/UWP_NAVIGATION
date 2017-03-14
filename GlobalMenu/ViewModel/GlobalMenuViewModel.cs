@@ -18,9 +18,11 @@ using PropertyChanged;
 namespace GlobalMenu.ViewModel
 {
    
-    public class GlobalMenuViewModel
+    public class GlobalMenuViewModel:INotifyPropertyChanged
     {
         public NavigationFrame NavigationFrame { get; set; }
+
+        public HistoryRecord[] History => NavigationWrapper.NavigationManager.History.GetHistoryAsArray;
 
         #region DelegateCommands
         public DelegateCommand<HistoryRecord> NavigateCommand { get; set; }
@@ -46,6 +48,8 @@ namespace GlobalMenu.ViewModel
                                                                                 {
                                                                                         this.GoBack.RaiseCanExecuteChanged();
                                                                                         this.GoForward.RaiseCanExecuteChanged();
+                                                                                        this.OnPropertyChanged(nameof(this.History));
+                                                                                    
                                                                                 };
 
         }
@@ -53,7 +57,7 @@ namespace GlobalMenu.ViewModel
         private void InitializeDelegateCommands()
         {
             this.NavigateCommand = new DelegateCommand<HistoryRecord>(
-                (h) => NavigationWrapper.NavigationManager.NavigateFrame(this.NavigationFrame.CurrentFrame, h.PageName));
+                (h) => NavigationWrapper.NavigationManager.NavigateFrame(this.NavigationFrame.NestedFrame, h.PageName));
 
             this.GoBack = new DelegateCommand(() => NavigationWrapper.NavigationManager.NavigateBack(this.NavigationFrame.CurrentFrame,this.NavigationFrame.NestedFrame),
                                               () => NavigationWrapper.NavigationManager.CanNavigateBack());
@@ -63,5 +67,15 @@ namespace GlobalMenu.ViewModel
 
             this.GoHome =  new DelegateCommand(()=>this.NavigationFrame.CurrentFrame.GoBack());
         }
+
+        #region INotifyPropertyChangedImplemented
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
     }
 }

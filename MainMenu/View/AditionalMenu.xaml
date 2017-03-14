@@ -9,13 +9,22 @@
       x:Name="root"
       mc:Ignorable="d">
 
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <SlideNavigationTransitionInfo />
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+    
     <Page.Resources>
         <DataTemplate x:Key="MenuButtonTemplate">
             <Grid Height="200"
                   Width="200"
                   Margin="5"
                   Padding="10"
-                  IsHitTestVisible="True"
                   Background="{StaticResource  ButtonColor}"
                   BorderBrush="{StaticResource IconPathColor}"
                   BorderThickness="2">
@@ -23,6 +32,8 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
+
+
                 <TextBlock Grid.Row="0"
                            Foreground="White"
                            Text="{Binding Path= Title}" />
@@ -30,7 +41,8 @@
                        Margin="10"
                        Source="{Binding Path=Image}"
                        HorizontalAlignment="Center"
-                       VerticalAlignment="Center" />
+                       VerticalAlignment="Center"
+                       Stretch="UniformToFill" />
             </Grid>
 
         </DataTemplate>
