@@ -107,7 +107,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NavigationHistories.cs" />
+    <Compile Include="NavigationFrames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Static.rd.xml" />
   </ItemGroup>

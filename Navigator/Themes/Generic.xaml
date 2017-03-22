@@ -3,10 +3,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:Navigator.FrameControl">
 
-    <Style TargetType="local:NavigatedFrame">
+    <Style TargetType="local:NavigationFrame">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:NavigatedFrame">
+                <ControlTemplate TargetType="local:NavigationFrame">
                     <ContentPresenter Content="{TemplateBinding Content}"/>
                 </ControlTemplate>
             </Setter.Value>

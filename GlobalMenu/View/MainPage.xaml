@@ -4,6 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:navigation="using:Navigator.FrameControl"
       mc:Ignorable="d"
       x:Name="root">
     <Page.Style>
@@ -161,13 +162,8 @@
             </ItemsControl>
         </Grid>
 
-
-        <Frame x:Name="NestedFrame" Margin="5"
-            Grid.Row="1"
-                                   SourcePageType="{Binding Path=NavigationFrame.NestedPageType,
-                Mode=TwoWay,
-                UpdateSourceTrigger=PropertyChanged}" />
-
+        <navigation:NavigationFrame Grid.Row="1"
+                                    FrameName="MainMenuFrame" />
 
     </Grid>
 </Page>

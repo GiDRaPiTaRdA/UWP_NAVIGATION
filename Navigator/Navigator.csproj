@@ -107,10 +107,9 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrameControl\NavigatedFrame.cs" />
+    <Compile Include="FramesManagment\FrameManager.cs" />
     <Compile Include="Navigation\History\HistoryRecord.cs" />
-    <Compile Include="Navigation\NavigationFrame.cs" />
-    <Compile Include="Navigation\NavigationWrapper.cs" />
+    <Compile Include="FrameControl\NavigationFrame.cs" />
     <Compile Include="NavigationEventsHandler\NavigationArgs.cs" />
     <Compile Include="NavigationEventsHandler\NavigationEventHandler.cs" />
     <Compile Include="Navigation\History\NavigationHistory.cs" />

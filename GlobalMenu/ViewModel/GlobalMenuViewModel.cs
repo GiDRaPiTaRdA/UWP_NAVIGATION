@@ -10,19 +10,23 @@ using GlobalMenu.View;
 using MainMenu.Models;
 using Navigator;
 using Navigator.Annotations;
+using Navigator.FrameControl;
 using Navigator.Navigation;
 using Navigator.Navigation.History;
 using Prism.Commands;
 using PropertyChanged;
+using Static;
 
 namespace GlobalMenu.ViewModel
 {
    
     public class GlobalMenuViewModel:INotifyPropertyChanged
     {
-        public NavigationFrame NavigationFrame { get; set; }
+        public string Frame { get; set; } = "MainMenuFrame";
 
-        public HistoryRecord[] History => NavigationWrapper.NavigationManager.History.GetHistoryAsArray;
+        public int a => 0;
+
+        public HistoryRecord[] History => NavigationManager.Instance.History.GetHistoryAsArray;
 
         #region DelegateCommands
         public DelegateCommand<HistoryRecord> NavigateCommand { get; set; }
@@ -33,39 +37,33 @@ namespace GlobalMenu.ViewModel
         #endregion
 
 
-        public GlobalMenuViewModel(Frame frame,Frame nestedFrame)
+        public GlobalMenuViewModel()
         {
-            
-
-            this.NavigationFrame = new NavigationFrame(frame,nestedFrame);
-
-            NavigationWrapper.NavigationManager.NavigateFrame(nestedFrame, typeof(MainMenu.View.MainPage).FullName);
-            
-
+           
             this.InitializeDelegateCommands();
 
-            NavigationWrapper.NavigationManager.NavigationEventHandler.EventHandler += (sender, args) =>
+            NavigationManager.Instance.NavigationEventHandler.EventHandler += (sender, args) =>
                                                                                 {
                                                                                         this.GoBack.RaiseCanExecuteChanged();
                                                                                         this.GoForward.RaiseCanExecuteChanged();
-                                                                                        this.OnPropertyChanged(nameof(this.History));
-                                                                                    
+                                                                                        this.OnPropertyChanged(nameof(this.History));              
                                                                                 };
+
+            //NavigationManager.Instance.NavigateFrame(this.Frame, "MainMenu.View.MainPage");
 
         }
 
         private void InitializeDelegateCommands()
         {
             this.NavigateCommand = new DelegateCommand<HistoryRecord>(
-                (h) => NavigationWrapper.NavigationManager.NavigateFrame(this.NavigationFrame.NestedFrame, h.PageName));
+                (h) => NavigationManager.Instance.NavigateFrame(this.Frame, h.FullPageName));
 
-            this.GoBack = new DelegateCommand(() => NavigationWrapper.NavigationManager.NavigateBack(this.NavigationFrame.CurrentFrame,this.NavigationFrame.NestedFrame),
-                                              () => NavigationWrapper.NavigationManager.CanNavigateBack());
+            this.GoBack = new DelegateCommand(() => NavigationManager.Instance.NavigateBack(this.Frame),
+                                              () => NavigationManager.Instance.CanNavigateBack());
 
-            this.GoForward = new DelegateCommand(() => NavigationWrapper.NavigationManager.NavigateForward(this.NavigationFrame.NestedFrame),
-                                                 () => NavigationWrapper.NavigationManager.CanNavigateForward());
+            this.GoForward = new DelegateCommand(() => NavigationManager.Instance.NavigateForward(this.Frame),
+                                                 () => NavigationManager.Instance.CanNavigateForward());
 
-            this.GoHome =  new DelegateCommand(()=>this.NavigationFrame.CurrentFrame.GoBack());
         }
 
         #region INotifyPropertyChangedImplemented

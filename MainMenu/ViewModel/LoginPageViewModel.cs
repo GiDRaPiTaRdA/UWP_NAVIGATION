@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using MainMenu.View;
 using Prism.Commands;
 using Navigator.Navigation;
 using Notifications;
@@ -11,13 +12,13 @@ using Notifications;
 // ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable ArrangeTypeModifiers
 
-namespace SRBD_UWP.ViewModel
+namespace MainMenu.ViewModel
 {
-    class MainPageViewModel
+    class LoginPageViewModel
     {
         public DelegateCommand NavigateToGlobalMenuCommand { get; set; }
         public DelegateCommand ExitAppCommand { get; set; }
-        public MainPageViewModel()
+        public LoginPageViewModel()
         {
             this.Initialize();
         }
@@ -25,8 +26,9 @@ namespace SRBD_UWP.ViewModel
         private void Initialize()
         {
             this.NavigateToGlobalMenuCommand =  new DelegateCommand(() =>
-            NavigationWrapper.NavigationManager.NavigateFrameSilent(
-                Window.Current.Content as Frame, typeof(GlobalMenu.View.MainPage).FullName));
+            NavigationManager.Instance.NavigateFrameSilent(
+               "WrapperFrame", "GlobalMenu.View.MainPage")
+               );
 
             this.ExitAppCommand = new DelegateCommand(Exit);    
         }

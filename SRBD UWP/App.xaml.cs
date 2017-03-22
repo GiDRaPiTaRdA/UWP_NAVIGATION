@@ -4,8 +4,8 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using SRBD_UWP.View;
 using SRBD_UWP.PagesManager;
+using SRBD_UWP.View;
 
 namespace SRBD_UWP
 {
@@ -25,9 +25,8 @@ namespace SRBD_UWP
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
-
-         
         }
+
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -36,8 +35,9 @@ namespace SRBD_UWP
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+
             //LOAD Pages and call init pages method of navigation manager
-            Navigator.Navigation.NavigationWrapper.InitializePages( PagesLoader.LoadImportingPages()); 
+            Navigator.Navigation.NavigationManager.InitializePages(PagesLoader.LoadImportingPages());
 
             /////////////////////////////////////////////////////////////////// FRAME COUNTER
             //#if DEBUG
@@ -72,10 +72,15 @@ namespace SRBD_UWP
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                rootFrame.Navigate(typeof(WrappingView), e.Arguments);
             }
+
+           
+
             // Ensure the current window is active
             Window.Current.Activate();
+
+            
         }
 
         /// <summary>

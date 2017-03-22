@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.UI.Xaml.Controls;
 
 namespace Navigator.NavigationEventsHandler
 {
@@ -6,9 +7,9 @@ namespace Navigator.NavigationEventsHandler
     {
         public event EventHandler EventHandler;
 
-        public void OnNavigated(string pageFullName)
+        public void OnNavigated(Page page,Frame frame)
         {
-            this.EventHandler?.Invoke(this,new NavigationArgs(pageFullName));
+            this.EventHandler?.Invoke(this,new NavigationArgs(page,frame));
         }
     }
 }

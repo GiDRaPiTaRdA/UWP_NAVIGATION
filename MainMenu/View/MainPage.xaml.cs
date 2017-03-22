@@ -21,29 +21,10 @@ namespace MainMenu.View
         {
             this.InitializeComponent();
 
-            this.NavigationCacheMode = NavigationCacheMode.Enabled;
-            this.Loaded += (sender, args) =>
-                           {
-                               if (!this.dataContextInitialzed)
-                               {
-                                   this.DataContext = new MainMenuViewModel(this.Frame);
-                                   this.dataContextInitialzed = true;
-                               }
-                           };
+            if(this.DataContext==null)
+                this.DataContext = new MainMenuViewModel();
 
         }
-
-        private async void Image_OnImageFailed(object sender, ExceptionRoutedEventArgs e)
-        {
-            await Notifications.NotificationManager.Notification("Failed to load "+ e?.ErrorMessage);
-        }
-
-        private async void Image_OnImageOpened(object sender, RoutedEventArgs e)
-        {
-            await Notifications.NotificationManager.Notification("Opened");
-        }
-
-        
     }
 }
 

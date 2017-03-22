@@ -2,6 +2,7 @@
 using Windows.UI.Xaml.Controls;
 using MainMenu.Models;
 using MainMenu.View;
+using Navigator.FrameControl;
 using Navigator.Navigation;
 using Prism.Commands;
 using PropertyChanged;
@@ -17,33 +18,17 @@ namespace MainMenu.ViewModel
 
         public NavigationFrame NaviFrame { get; set; }
 
-        public MainMenuViewModel()
-            : this(frame: null){ }
         public MainMenuViewModel(Frame frame = null)
         {
-            if(frame!=null)
-                this.NaviFrame = new NavigationFrame(frame);
+            //if(frame!=null)
+            //    this.NaviFrame = new NavigationFrame();
 
             this.Initialize();
         }
 
         private void Initialize()
         {
-            this.NavigateCurrentCommand =
-                new DelegateCommand<object>(obj =>
-                                            {
-                                                if (!string.IsNullOrWhiteSpace(((MainMenuPageButton)obj).NavigationPageName))
-                                                {
-
-                                                    NavigationWrapper.NavigationManager.History.ClearAfter(typeof(MainPage).FullName);
-
-                                                    NavigationWrapper.NavigationManager.NavigateFrame(
-                                                        this.NaviFrame?.CurrentFrame,
-                                                        ((MainMenuPageButton)obj).NavigationPageName);
-                                                }
-
-                                            });
-
+         
             string imagePath = "ms-appx:///MainMenu/TileIcons/SplashScreen.scale-200.png";
 
             if (this.MainMenuPageButtonsList==null)

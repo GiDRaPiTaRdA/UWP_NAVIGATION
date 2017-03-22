@@ -62,7 +62,7 @@ namespace Navigator.Navigation.History
         internal bool Remove(Type frameType)
         {
             bool result = this.FrameNavigationHistory.Remove(
-                this.FrameNavigationHistory.FirstOrDefault(t => t.PageName == frameType.FullName));
+                this.FrameNavigationHistory.FirstOrDefault(t => t.FullPageName == frameType.FullName));
 
             return result;
         }
@@ -75,7 +75,7 @@ namespace Navigator.Navigation.History
             { 
                 resultingHistoryRecords.AddLast(historyRecord);
 
-                if (historyRecord.PageName == frameType.FullName)
+                if (historyRecord.FullPageName == frameType.FullName)
                 {
                     this.FrameNavigationHistory = resultingHistoryRecords;
                     return;
@@ -111,7 +111,7 @@ namespace Navigator.Navigation.History
         internal bool Remove(string typeName)
         {
             bool result = this.FrameNavigationHistory.Remove(
-                this.FrameNavigationHistory.FirstOrDefault(t => t.PageName == typeName));
+                this.FrameNavigationHistory.FirstOrDefault(t => t.FullPageName == typeName));
 
             return result;
         }
@@ -124,7 +124,7 @@ namespace Navigator.Navigation.History
             {
                 resultingHistoryRecords.AddLast(historyRecord);
 
-                if (historyRecord.PageName == frameName)
+                if (historyRecord.FullPageName == frameName)
                 {
                     this.FrameNavigationHistory = resultingHistoryRecords;
                     return;

@@ -6,23 +6,23 @@ namespace Navigator.Navigation.History
     {
         public HistoryRecord(Type pageType)
         {
-            this.PageName = pageType.FullName;
+            this.FullPageName = pageType.FullName;
         }
-        public HistoryRecord(string pageName)
+        public HistoryRecord(string fullPageName)
         {
-            this.PageName = pageName;
+            this.FullPageName = fullPageName;
         }
 
-        public string PageName { get; private set; }
+        public string FullPageName { get; private set; }
 
         public override bool Equals(object obj)
         {
-            return this.PageName == (obj as HistoryRecord)?.PageName;
+            return this.FullPageName == (obj as HistoryRecord)?.FullPageName;
         }
 
         public override string ToString()
         {
-            return this.PageName;
+            return this.FullPageName;
         }
 
         public override int GetHashCode()

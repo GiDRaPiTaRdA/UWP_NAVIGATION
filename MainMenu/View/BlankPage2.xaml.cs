@@ -28,7 +28,7 @@ namespace MainMenu.View
         public BlankPage2()
         {
             this.InitializeComponent();
-            this.Loaded += (sender, args) => this.DataContext = new BlankPage2ViewModel(typeof(MainPage), this.Frame);
+            this.Loaded += (sender, args) => this.DataContext = new BlankPage2ViewModel(typeof(LoginPage), this.Frame);
 
         }
     }

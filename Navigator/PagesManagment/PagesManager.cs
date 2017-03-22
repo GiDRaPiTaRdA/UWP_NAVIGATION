@@ -1,19 +1,36 @@
 ﻿using System;
+using Windows.UI.Notifications;
+using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
 
 namespace Navigator.PagesManagment
 {
     public class PagesManager
     {
-        public Page[] Pages { get; private set; }
+        private static Page[] pagesTemporaryStorage;
 
-        public void InitializePages(Page[] pages) => this.Pages = pages;
+        public static Page[] Pages
+        {
+            get
+            {
+                if (pagesTemporaryStorage == null)
+                    throw new ElementNotEnabledException();
+                return pagesTemporaryStorage;
+            }
+        }
+
+        public void InitializePages(Page[] pages)
+        {
+            pagesTemporaryStorage = pages;
+        }
+
+    
 
         public Page GetPageByString(string pageName)
         {
             Page pageResult = null;
 
-            foreach (var page in this.Pages)
+            foreach (var page in Pages)
             {
                 if (page.ToString()==pageName)
                 {

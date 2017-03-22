@@ -114,6 +114,7 @@
     <Compile Include="ViewModel\BlankPage2ViewModel.cs" />
     <Compile Include="ViewModel\BlankPage1ViewModel.cs" />
     <Compile Include="ViewModel\AditionalMenuViewModel.cs" />
+    <Compile Include="ViewModel\LoginPageViewModel.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="View\BlankPage3.xaml.cs">
       <DependentUpon>BlankPage3.xaml</DependentUpon>
@@ -132,6 +133,9 @@
     </Compile>
     <Compile Include="View\ImageTest.xaml.cs">
       <DependentUpon>ImageTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -169,6 +173,10 @@
     <Page Include="View\ImageTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>

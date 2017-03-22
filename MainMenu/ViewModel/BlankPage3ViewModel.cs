@@ -21,8 +21,8 @@ namespace MainMenu.ViewModel
         {
             this.NavigateCommand =
                 new DelegateCommand(() =>
-                NavigationWrapper.NavigationManager.NavigateFrame(
-                    frame, typeof(BlankPage4).FullName));                    
+                NavigationManager.Instance.NavigateFrame(
+                    "", typeof(BlankPage4).FullName));                    
         }
     }
 }
