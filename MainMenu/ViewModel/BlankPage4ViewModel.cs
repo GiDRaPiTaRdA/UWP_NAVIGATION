@@ -6,12 +6,12 @@ namespace MainMenu.ViewModel
 {
     public class BlankPage4ViewModel
     {
-        public BlankPage4ViewModel(Type type,Frame frame)
+        public BlankPage4ViewModel()
         {
             this.Initialize();
         }
 
-        public void Initialize()
+        private void Initialize()
         {
             // do something
         }

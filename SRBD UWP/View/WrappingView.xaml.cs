@@ -25,15 +25,8 @@ namespace SRBD_UWP.View
     {
         public WrappingView()
         {
-           
             this.InitializeComponent();
-            this.Loaded+=
-                (obj, sender) =>
-                {
-                    this.DataContext = new WrappingViewViewModel();
-                };
-
-
+            this.DataContext = new WrappingViewViewModel();
         }
     }
 }

@@ -115,6 +115,7 @@
     <Compile Include="Navigation\History\NavigationHistory.cs" />
     <Compile Include="Navigation\NavigationManager.cs" />
     <Compile Include="PagesManagment\PagesManager.cs" />
+    <Compile Include="PagesManagment\PagesManagerEventHandler.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Navigator.rd.xml" />

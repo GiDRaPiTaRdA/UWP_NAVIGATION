@@ -28,6 +28,12 @@ namespace MainMenu.ViewModel
 
         private void Initialize()
         {
+            this.NavigateCurrentCommand =  new DelegateCommand<object>(obj=>
+                                                                       {
+                                                                           MainMenuPageButton button = (MainMenuPageButton)obj;
+                NavigationManager.Instance.NavigateFrame("MainMenuFrame", button.NavigationPageName);
+            }
+            );
          
             string imagePath = "ms-appx:///MainMenu/TileIcons/SplashScreen.scale-200.png";
 

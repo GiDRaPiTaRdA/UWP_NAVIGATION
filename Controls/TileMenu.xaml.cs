@@ -71,6 +71,9 @@ namespace Controls
 
         private void MyGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
+            if(this.ItemClick==null)
+                throw new ArgumentNullException();
+
             this.ItemClick.Execute(e.ClickedItem);
         }
     }

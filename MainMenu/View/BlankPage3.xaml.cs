@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Composition;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -22,13 +23,13 @@ namespace MainMenu.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    [Export(typeof(Page))]
     public sealed partial class BlankPage3 : Page
     {
         public BlankPage3()
         {
+            //Assembly.Load(new AssemblyName(this.GetType().AssemblyQualifiedName)).DefinedTypes.Where(t=>t.CustomAttributes.Any(ta=>ta.AttributeType == ))
             this.InitializeComponent();
-            this.Loaded += (sender, args) => this.DataContext = new BlankPage3ViewModel(this.Frame);
+            this.DataContext = new BlankPage3ViewModel(this.Frame);
         }
     }
 }

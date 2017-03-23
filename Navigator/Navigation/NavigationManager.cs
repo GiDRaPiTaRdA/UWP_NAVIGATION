@@ -52,6 +52,13 @@ namespace Navigator.Navigation
             
             this.FrameManager = new FrameManager();
             this.NavigationEventHandler = new NavigationEventHandler();
+
+            PagesManager.EventHandler.PagesHandler += this.OnPagesLoaded;
+        }
+
+        private void OnPagesLoaded(object sender, EventArgs e)
+        {
+            int i = 0;
         }
 
         #region ________________________PageNavigation_________________________
@@ -64,7 +71,7 @@ namespace Navigator.Navigation
         /// </summary>
         public void NavigateFrame(string frame, string pageName)
         {
-            Type t = PagesManager.GetPageByString(pageName).GetType();
+            Type t = PagesManager.GetTypeOfPageByString(pageName);
 
             this.NavigateFrame(frame, t);
         }
@@ -94,7 +101,7 @@ namespace Navigator.Navigation
 
             this.History.ClearAfter(targetType);
 
-            this.RaizeOnNavigated((Page)Activator.CreateInstance(targetType), frame);
+            this.RaizeOnNavigated(PagesManager.GetTypeOfPageByString(targetType.FullName), frame);
         }
 
         /// <summary>
@@ -106,7 +113,7 @@ namespace Navigator.Navigation
 
             frame.Navigate(targetType); // TODO NO DEFAULT NAVIGATION!!!
 
-            this.RaizeOnNavigated((Page)Activator.CreateInstance(targetType), frame);
+            this.RaizeOnNavigated(PagesManager.GetTypeOfPageByString(targetType.FullName), frame);
         }
         #endregion
 
@@ -117,9 +124,9 @@ namespace Navigator.Navigation
         {
             string target = this.GetNextHistoryRecord().FullPageName;
             Frame frame = this.FrameManager.GetFrameByString(frameName);
-            Page targetPage = PagesManager.GetPageByString(target);
+            Type targetPage = PagesManager.GetTypeOfPageByString(target);
 
-            frame.Navigate(targetPage.GetType()); // TODO NO DAFAULT NAVIGATION!!!
+            frame.Navigate(targetPage); // TODO NO DAFAULT NAVIGATION!!!
             this.RaizeOnNavigated(targetPage, frame);
         }
 
@@ -130,19 +137,19 @@ namespace Navigator.Navigation
         {
             string target = this.GetPreviousHistoryRecord().FullPageName;
             Frame frame = this.FrameManager.GetFrameByString(frameName);
-            Page targetPage = PagesManager.GetPageByString(target);
+            Type targetPage = PagesManager.GetTypeOfPageByString(target);
 
 
 
             if (frame.SourcePageType.FullName == target)
             {
-                frame.Navigate(targetPage.GetType());
+                frame.Navigate(targetPage);
                 frame.BackStack.RemoveAt(frame.BackStack.Count - 1);
                 this.RaizeOnNavigated(targetPage, frame);
             }
             else
             {
-                frame.Navigate(targetPage.GetType());
+                frame.Navigate(targetPage);
             }
            
 
@@ -232,15 +239,15 @@ namespace Navigator.Navigation
         /// Initialization of pages of pages manager
         /// </summary>
         /// <param name="pages">list of pages by which to initialize</param>
-        public static void InitializePages(Page[] pages) => PagesManager.InitializePages(pages);
+        public static void InitializePages(Type[] pages) => PagesManager.InitializePages(pages);
 
         /// <summary>
         /// Method which raises on navigeted
         /// </summary>
         /// <param name="page">navigated page (what)</param>
         /// <param name="frame">parrent frame (where)</param>
-        private void RaizeOnNavigated(Page page, Frame frame) =>
-            this.NavigationEventHandler?.OnNavigated(page, frame);
+        private void RaizeOnNavigated(Type pageType, Frame frame) =>
+            this.NavigationEventHandler?.OnNavigated(pageType, frame);
         #endregion
     }
 }

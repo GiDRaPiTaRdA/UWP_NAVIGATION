@@ -20,6 +20,5 @@
             </LinearGradientBrush>
         </Grid.Background>
         <frameControl:NavigationFrame FrameName="WrapperFrame" />
-
     </Grid>
 </Page>

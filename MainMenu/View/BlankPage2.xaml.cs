@@ -22,13 +22,12 @@ namespace MainMenu.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    [Export(typeof(Page))]
     public sealed partial class BlankPage2 : Page
     {
         public BlankPage2()
         {
             this.InitializeComponent();
-            this.Loaded += (sender, args) => this.DataContext = new BlankPage2ViewModel(typeof(LoginPage), this.Frame);
+            this.DataContext = new BlankPage2ViewModel(typeof(LoginPage), this.Frame);
 
         }
     }

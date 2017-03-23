@@ -7,9 +7,9 @@ namespace Navigator.NavigationEventsHandler
     {
         public event EventHandler EventHandler;
 
-        public void OnNavigated(Page page,Frame frame)
+        public void OnNavigated(Type pageType,Frame frame)
         {
-            this.EventHandler?.Invoke(this,new NavigationArgs(page,frame));
+            this.EventHandler?.Invoke(this,new NavigationArgs(pageType,frame));
         }
     }
 }

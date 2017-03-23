@@ -9,12 +9,12 @@ namespace Navigator.NavigationEventsHandler
     public class NavigationArgs : EventArgs
     {
         public NavigationArgs() : this(null,null) { }
-        public NavigationArgs(Page navigatedPage,Frame frame)
+        public NavigationArgs(Type navigatedPageTypeType,Frame frame)
         {
-            this.NavigatedPage = navigatedPage;
+            this.NavigatedPageType = navigatedPageTypeType;
             this.FrameName = frame;
         }
-        public Page NavigatedPage { get; set; }
+        public Type NavigatedPageType { get; set; }
         public Frame FrameName { get; set; }
     }
 }

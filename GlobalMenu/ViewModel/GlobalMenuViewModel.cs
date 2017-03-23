@@ -20,11 +20,11 @@ using Static;
 namespace GlobalMenu.ViewModel
 {
    
-    public class GlobalMenuViewModel:INotifyPropertyChanged
+    public sealed class GlobalMenuViewModel:INotifyPropertyChanged
     {
-        public string Frame { get; set; } = "MainMenuFrame";
+        public string FrameName { get; set; } = "MainMenuFrame";
 
-        public int a => 0;
+        
 
         public HistoryRecord[] History => NavigationManager.Instance.History.GetHistoryAsArray;
 
@@ -49,19 +49,19 @@ namespace GlobalMenu.ViewModel
                                                                                         this.OnPropertyChanged(nameof(this.History));              
                                                                                 };
 
-            //NavigationManager.Instance.NavigateFrame(this.Frame, "MainMenu.View.MainPage");
+            NavigationManager.Instance.NavigateFrame(this.FrameName, "MainMenu.View.MainPage");
 
         }
 
         private void InitializeDelegateCommands()
         {
             this.NavigateCommand = new DelegateCommand<HistoryRecord>(
-                (h) => NavigationManager.Instance.NavigateFrame(this.Frame, h.FullPageName));
+                (h) => NavigationManager.Instance.NavigateFrame(this.FrameName, h.FullPageName));
 
-            this.GoBack = new DelegateCommand(() => NavigationManager.Instance.NavigateBack(this.Frame),
+            this.GoBack = new DelegateCommand(() => NavigationManager.Instance.NavigateBack(this.FrameName),
                                               () => NavigationManager.Instance.CanNavigateBack());
 
-            this.GoForward = new DelegateCommand(() => NavigationManager.Instance.NavigateForward(this.Frame),
+            this.GoForward = new DelegateCommand(() => NavigationManager.Instance.NavigateForward(this.FrameName),
                                                  () => NavigationManager.Instance.CanNavigateForward());
 
         }
@@ -70,7 +70,7 @@ namespace GlobalMenu.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

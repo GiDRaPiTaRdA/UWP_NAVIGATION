@@ -37,7 +37,8 @@ namespace SRBD_UWP
         {
 
             //LOAD Pages and call init pages method of navigation manager
-            Navigator.Navigation.NavigationManager.InitializePages(PagesLoader.LoadImportingPages());
+           
+            Navigator.Navigation.NavigationManager.InitializePages(PagesLoader.LoadImportingPageTypes());
 
             /////////////////////////////////////////////////////////////////// FRAME COUNTER
             //#if DEBUG

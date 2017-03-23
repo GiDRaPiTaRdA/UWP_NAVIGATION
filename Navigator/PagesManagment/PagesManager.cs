@@ -7,9 +7,11 @@ namespace Navigator.PagesManagment
 {
     public class PagesManager
     {
-        private static Page[] pagesTemporaryStorage;
+        public readonly PagesManagerEventHandler EventHandler = new PagesManagerEventHandler();
 
-        public static Page[] Pages
+        private static Type[] pagesTemporaryStorage;
+
+        public static Type[] Pages
         {
             get
             {
@@ -19,16 +21,15 @@ namespace Navigator.PagesManagment
             }
         }
 
-        public void InitializePages(Page[] pages)
+        public void InitializePages(Type[] pageTypes)
         {
-            pagesTemporaryStorage = pages;
+            pagesTemporaryStorage = pageTypes;
+            this.EventHandler.OnPagesInitialized(this);
         }
 
-    
-
-        public Page GetPageByString(string pageName)
+        public Type GetTypeOfPageByString(string pageName)
         {
-            Page pageResult = null;
+            Type pageResult = null;
 
             foreach (var page in Pages)
             {
@@ -40,12 +41,6 @@ namespace Navigator.PagesManagment
                 }
             }
             return pageResult;
-        }
-
-        public Type GetTypeOfPageByString(string pageName)
-        {
-            Type type = this.GetPageByString(pageName).GetType();
-            return type;
         }
     }
 }

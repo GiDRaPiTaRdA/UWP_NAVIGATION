@@ -28,21 +28,21 @@
 
         <x:Double x:Key="BasicSize">50</x:Double>
 
-
         <Style x:Key="RoundedButtonStyle"
                TargetType="AppBarButton">
-            
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="AppBarButton">
-                        <Border Name="Border"  CornerRadius="15"
+                        <Border Name="Border"
+                                CornerRadius="15"
                                 Background="#FFE8E8E8"
                                 BorderThickness="1"
                                 BorderBrush="Transparent"
                                 Padding="2">
-                        <ContentPresenter  HorizontalAlignment="Center"
-                                          VerticalAlignment="Center" />
-                        <VisualStateManager.VisualStateGroups>
+                            <ContentPresenter  HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" />
+                            <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
                                     <VisualState x:Name="Normal" />
                                     <VisualState x:Name="PointerOver">
@@ -50,13 +50,12 @@
                                             <ColorAnimation Duration="0"
                                                             To="LightGray"
                                                             Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
-                                                            Storyboard.TargetName="Border"/>
-                                                             <ColorAnimation Duration="0"
+                                                            Storyboard.TargetName="Border" />
+                                            <ColorAnimation Duration="0"
                                                             To="Transparent"
                                                             Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)"
-                                                            Storyboard.TargetName="Border"
-                                                            />
-                                           
+                                                            Storyboard.TargetName="Border" />
+
                                         </Storyboard>
                                     </VisualState>
                                     <VisualState x:Name="Pressed">
@@ -64,18 +63,17 @@
                                             <ColorAnimation Duration="0"
                                                             To="White"
                                                             Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
-                                                            Storyboard.TargetName="Border"/>
-                                         
+                                                            Storyboard.TargetName="Border" />
+
                                         </Storyboard>
                                     </VisualState>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                       </Border>
+                        </Border>
                     </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
+                </Setter.Value>
+            </Setter>
         </Style>
-
 
         <!--<DataTemplate x:Key="GlobalMenuButtonTemplate">
             <Grid Height="200"
