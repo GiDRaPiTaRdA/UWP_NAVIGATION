@@ -10,7 +10,6 @@ namespace MainMenu.ViewModel
     public class BlankPage1ViewModel
     {
         public DelegateCommand NavigateCommand { get; set; }
-        public DelegateCommand NavigateBackCommand { get; set; }
 
         public BlankPage1ViewModel(Frame frame)
         { 

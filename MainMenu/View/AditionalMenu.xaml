@@ -47,7 +47,7 @@
                         CanDragItems="True"
                         AllowDrop="True"
                         SelectionMode="None"
-                        ItemClick="{Binding NavigateCurrentCommand}" />
+                            ItemClick="{Binding NavigateCurrentCommand}" />
     </Grid>
 
 </Page>

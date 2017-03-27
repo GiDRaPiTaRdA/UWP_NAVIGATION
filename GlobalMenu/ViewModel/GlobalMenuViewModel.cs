@@ -14,15 +14,14 @@ using Navigator.FrameControl;
 using Navigator.Navigation;
 using Navigator.Navigation.History;
 using Prism.Commands;
-using PropertyChanged;
-using Static;
+
 
 namespace GlobalMenu.ViewModel
 {
    
     public sealed class GlobalMenuViewModel:INotifyPropertyChanged
     {
-        public string FrameName { get; set; } = "MainMenuFrame";
+        private readonly string frameName = Static.NavigationFrames.MainMenuFrame;
 
         
 
@@ -48,21 +47,35 @@ namespace GlobalMenu.ViewModel
                                                                                         this.GoForward.RaiseCanExecuteChanged();
                                                                                         this.OnPropertyChanged(nameof(this.History));              
                                                                                 };
+            
+           // if(!NavigationManager.Instance.History.Any())
 
-            NavigationManager.Instance.NavigateFrame(this.FrameName, "MainMenu.View.MainPage");
+                //NavigationManager.Instance.History.Clear();
+                NavigationManager.Instance.NavigateFrame(this.frameName, "MainMenu.View.MainPage");
 
         }
 
         private void InitializeDelegateCommands()
         {
             this.NavigateCommand = new DelegateCommand<HistoryRecord>(
-                (h) => NavigationManager.Instance.NavigateFrame(this.FrameName, h.FullPageName));
+                (h) =>
+                {
+                    
+                    NavigationManager.Instance.NavigateFrameSilent(this.frameName, h);
+                });
 
-            this.GoBack = new DelegateCommand(() => NavigationManager.Instance.NavigateBack(this.FrameName),
+            this.GoBack = new DelegateCommand(() => NavigationManager.Instance.NavigateBack(this.frameName),
                                               () => NavigationManager.Instance.CanNavigateBack());
 
-            this.GoForward = new DelegateCommand(() => NavigationManager.Instance.NavigateForward(this.FrameName),
+            this.GoForward = new DelegateCommand(() => NavigationManager.Instance.NavigateForward(this.frameName),
                                                  () => NavigationManager.Instance.CanNavigateForward());
+
+            this.GoHome = new DelegateCommand(
+                () =>
+                {
+                    NavigationManager.Instance.NavigateFrameSilent(Static.NavigationFrames.WrapperFrame, "MainMenu.View.LoginPage");
+                    Navigator.Navigation.NavigationManager.Instance.History.Clear();
+                });
 
         }
 

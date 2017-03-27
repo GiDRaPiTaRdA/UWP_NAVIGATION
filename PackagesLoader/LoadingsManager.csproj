@@ -107,9 +107,13 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyLoader.cs" />
-    <Compile Include="ModuleContainer.cs" />
-    <Compile Include="XmlFileParser.cs" />
+    <Compile Include="Loaders\AssemblyLoader.cs" />
+    <Compile Include="Loaders\ImportsLoader.cs" />
+    <Compile Include="Loaders\InstaceLoader.cs" />
+    <Compile Include="Loaders\Loader.cs" />
+    <Compile Include="Loaders\TypesLoader.cs" />
+    <Compile Include="ParseXml\ModuleContainer.cs" />
+    <Compile Include="ParseXml\XmlFileParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\PackagesLoader.rd.xml" />
   </ItemGroup>

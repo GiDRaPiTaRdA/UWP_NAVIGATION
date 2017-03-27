@@ -1,8 +1,8 @@
 ﻿namespace Static
 {
-    public enum NavigationFrames
+    public static class NavigationFrames
     {
-        WrapperFrame,
-        MainMenuFrame,
+        public static string WrapperFrame = "WrapperFrame";
+        public static string MainMenuFrame = "MainMenuFrame";
     }
 }

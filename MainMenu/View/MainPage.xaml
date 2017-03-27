@@ -5,8 +5,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:controls="using:Controls"
       mc:Ignorable="d"
-      Style="{StaticResource SlideNavigationTransitionPageStyle}"
-      NavigationCacheMode="Enabled">
+      Style="{StaticResource SlideNavigationTransitionPageStyle}">
 
     
     

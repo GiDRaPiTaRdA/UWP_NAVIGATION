@@ -14,31 +14,31 @@ namespace MainMenu.ViewModel
     {
         public ObservableCollection<MainMenuPageButton> MainMenuPageButtonsList { get; set; }
 
-    public DelegateCommand<object> NavigateCurrentCommand { get; set; }
+        public DelegateCommand<object> NavigateCurrentCommand { get; set; }
 
         public NavigationFrame NaviFrame { get; set; }
 
-        public MainMenuViewModel(Frame frame = null)
+        public MainMenuViewModel()
         {
-            //if(frame!=null)
-            //    this.NaviFrame = new NavigationFrame();
-
             this.Initialize();
         }
 
         private void Initialize()
         {
-            this.NavigateCurrentCommand =  new DelegateCommand<object>(obj=>
-                                                                       {
-                                                                           MainMenuPageButton button = (MainMenuPageButton)obj;
-                NavigationManager.Instance.NavigateFrame("MainMenuFrame", button.NavigationPageName);
-            }
+            this.NavigateCurrentCommand = new DelegateCommand<object>(obj =>
+                {
+
+                    MainMenuPageButton button = (MainMenuPageButton)obj;
+
+                    if (button.NavigationPageName != null)
+                        NavigationManager.Instance.NavigateFrame("MainMenuFrame", button.NavigationPageName);
+                }
             );
-         
+
             string imagePath = "ms-appx:///MainMenu/TileIcons/SplashScreen.scale-200.png";
 
-            if (this.MainMenuPageButtonsList==null)
-            this.MainMenuPageButtonsList = new ObservableCollection<MainMenuPageButton>()
+            if (this.MainMenuPageButtonsList == null)
+                this.MainMenuPageButtonsList = new ObservableCollection<MainMenuPageButton>()
             {
                    new MainMenuPageButton(typeof(BlankPage1),"TITLE0",imagePath),
                    new MainMenuPageButton(typeof(BlankPage2),"TITLE1",imagePath),

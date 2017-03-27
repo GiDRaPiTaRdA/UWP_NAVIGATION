@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace SRBD_UWP.PackagesLoader
+namespace LoadingsManager.ParseXml
 {
     public class ModuleContainer 
     {

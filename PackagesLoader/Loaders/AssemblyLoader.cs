@@ -1,21 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using Windows.UI.Notifications;
+using LoadingsManager.ParseXml;
 
-namespace SRBD_UWP.PackagesLoader
+namespace LoadingsManager.Loaders
 {
-    public class AssemblyLoader
+    public class AssemblyLoader: Loader
     {
+        public string FullDirectoryPath => Directory.GetCurrentDirectory() +"/"+ this.ConfigFilePath;
 
-        public string LocalDirecroryPath { get; private set; }
-
-        public string FullDirectoryPath => Directory.GetCurrentDirectory() +"/"+ this.LocalDirecroryPath;
-
-        public AssemblyLoader(string localDirecroryPath)
-        {
-            this.LocalDirecroryPath = localDirecroryPath;
-        }
+        public AssemblyLoader(string localDirecroryPath) : base(localDirecroryPath) { }
 
         public List<Assembly> getAssemblies()
         {

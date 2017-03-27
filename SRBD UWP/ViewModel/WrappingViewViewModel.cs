@@ -2,12 +2,12 @@
 {
     public class WrappingViewViewModel
     {
-        public string FrameName => Static.NavigationFrames.WrapperFrame.ToString();
+        public string FrameName => Static.NavigationFrames.WrapperFrame;
 
         public WrappingViewViewModel()
         {
-            Navigator.Navigation.NavigationManager.Instance.NavigateFrame(
-               Static.NavigationFrames.WrapperFrame.ToString(),
+            Navigator.Navigation.NavigationManager.Instance.NavigateFrameSilent(
+                this.FrameName,
                "MainMenu.View.LoginPage"
                );
         }

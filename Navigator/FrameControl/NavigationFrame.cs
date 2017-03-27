@@ -12,6 +12,12 @@ namespace Navigator.FrameControl
     [ImplementPropertyChanged]
     public class NavigationFrame :Frame
     {
+
+        public NavigationFrame()
+        {
+            string s = this.FrameName;
+        }
+
         //LABUDA
         public static readonly DependencyProperty FrameNameDependencyProperty =
             DependencyProperty.Register("FrameName",

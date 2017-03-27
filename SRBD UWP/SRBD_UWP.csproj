@@ -101,7 +101,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PagesManager\PagesLoader.cs" />
+    <Compile Include="Boot\Bootstrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\WrappingViewViewModel.cs" />
     <Compile Include="View\WrappingView.xaml.cs">
@@ -143,10 +143,6 @@
       <Project>{b6f13b71-0102-4998-8038-40eba441cdf2}</Project>
       <Name>GlobalMenu</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ImportsManager\ImportsManager.csproj">
-      <Project>{b8f8ce92-bf7b-4ffc-8e11-037dd47a36e8}</Project>
-      <Name>ImportsManager</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Navigator\Navigator.csproj">
       <Project>{c90f79b0-11db-4a0a-a0a5-bacdf71023e2}</Project>
       <Name>Navigator</Name>
@@ -155,9 +151,9 @@
       <Project>{bee652b0-2699-4cd8-bb18-ca36f50cc207}</Project>
       <Name>Notifications</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PackagesLoader\PackagesLoader.csproj">
+    <ProjectReference Include="..\PackagesLoader\LoadingsManager.csproj">
       <Project>{24ad0c53-46be-498f-b3a3-eccbf274484d}</Project>
-      <Name>PackagesLoader</Name>
+      <Name>LoadingsManager</Name>
     </ProjectReference>
     <ProjectReference Include="..\Static\Static.csproj">
       <Project>{7e4cb57b-7fb7-4330-9eb1-2f450b4a7299}</Project>

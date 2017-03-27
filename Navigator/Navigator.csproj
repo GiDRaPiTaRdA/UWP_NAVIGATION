@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FramesManagment\FrameManager.cs" />
+    <Compile Include="NavigationAttribute\NavigationAttribute.cs" />
     <Compile Include="Navigation\History\HistoryRecord.cs" />
     <Compile Include="FrameControl\NavigationFrame.cs" />
     <Compile Include="NavigationEventsHandler\NavigationArgs.cs" />

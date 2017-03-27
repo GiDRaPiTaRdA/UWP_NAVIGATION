@@ -6,7 +6,9 @@
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:navigation="using:Navigator.FrameControl"
       mc:Ignorable="d"
-      x:Name="root">
+      x:Name="root"
+     NavigationCacheMode="Disabled"
+     >
     <Page.Style>
         <Style TargetType="Page">
 
@@ -110,7 +112,7 @@
                           Command="{Binding DataContext.NavigateCommand, ElementName=root}"
                           CommandParameter="{Binding}">
                 <TextBlock Margin="5,0,5,0"
-                           Text="{Binding PageName}" />
+                           Text="{Binding PageFullName}" />
             </AppBarButton>
         </DataTemplate>
     
@@ -160,8 +162,8 @@
             </ItemsControl>
         </Grid>
 
-        <navigation:NavigationFrame Grid.Row="1"
-                                    FrameName="MainMenuFrame" />
+        <navigation:NavigationFrame Grid.Row="1" Margin="5"
+                                    FrameName="MainMenuFrame"/>
 
     </Grid>
 </Page>

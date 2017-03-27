@@ -32,6 +32,16 @@ namespace MainMenu.ViewModel
         {
             string imagePath = "ms-appx:///MainMenu/TileIcons/SplashScreen.scale-200.png";
 
+            this.NavigateCurrentCommand = new DelegateCommand<object>(obj =>
+            {
+
+                MainMenuPageButton button = (MainMenuPageButton)obj;
+
+                if (button.NavigationPageName != null)
+                    NavigationManager.Instance.NavigateFrame("MainMenuFrame", button.NavigationPageName);
+            }
+            );
+
             if (this.MainMenuPageButtonsList==null)
             this.MainMenuPageButtonsList = new ObservableCollection<MainMenuPageButton>()
             {

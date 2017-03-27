@@ -72,7 +72,7 @@ namespace Controls
         private void MyGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             if(this.ItemClick==null)
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("ItemClick. Error while binding to ItemClick - possibly bad binding key or property initialization is absent");
 
             this.ItemClick.Execute(e.ClickedItem);
         }

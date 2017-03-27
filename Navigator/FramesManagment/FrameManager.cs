@@ -24,8 +24,10 @@ namespace Navigator.FramesManagment
 
         public void AddFrame(NavigationFrame navigationFrame)
         {
-            if(!this.Frames.ContainsKey(navigationFrame.FrameName))
-            this.Frames.Add(navigationFrame.FrameName,navigationFrame);
+            if (!this.Frames.ContainsKey(navigationFrame.FrameName))
+                this.Frames.Add(navigationFrame.FrameName, navigationFrame);
+            else
+                this.Frames[navigationFrame.FrameName] = navigationFrame;
         }
 
         public NavigationFrame GetFrameByString(string frameName)

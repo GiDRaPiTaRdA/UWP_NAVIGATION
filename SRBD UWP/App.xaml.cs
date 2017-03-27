@@ -36,9 +36,8 @@ namespace SRBD_UWP
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
 
-            //LOAD Pages and call init pages method of navigation manager
-           
-            Navigator.Navigation.NavigationManager.InitializePages(PagesLoader.LoadImportingPageTypes());
+            //LOAD Page types and call init pages method of navigation manager
+            Bootstrapper.LoadImportingPageTypes();
 
             /////////////////////////////////////////////////////////////////// FRAME COUNTER
             //#if DEBUG
