@@ -58,27 +58,34 @@ namespace Navigator.Navigation
 
         #region Navigation
 
-        #region Navigate by Srting
+        #region Navigate Frame
+        /// <summary>
+        /// Navigate frame to type
+        /// </summary>
+        public void NavigateFrame(Frame frame, Type targetType)
+        {
+            Frame f = frame;
+
+            frame.Navigate(targetType); // TODO NO DEFAULT NAVIGATION!!!
+
+            this.History.ClearAfter(this.History.GetCurrent());
+
+            this.History.Add(f, targetType);
+
+            this.SetHistoryCurrentNode(this.History.FrameNavigationHistory.Last);
+
+            this.RaizeOnNavigated(PagesManager.GetTypeOfPageByString(targetType.FullName), frame);
+        }   // Main Navigate Method
+
         /// <summary>
         /// Navigate frame to type by string
         /// </summary>
         public void NavigateFrame(string frame, string pageName)
         {
-            Type t = PagesManager.GetTypeOfPageByString(pageName);
+            Type targetType = PagesManager.GetTypeOfPageByString(pageName);
 
-            this.NavigateFrame(frame, t);
+            this.NavigateFrame(frame, targetType);
         }
-
-        /// <summary>
-        /// Navigates frame to type without adding to history
-        /// </summary>
-        public void NavigateFrameSilent(string frameName, string pageName)
-        {
-            this.NavigateFrameSilent(frameName, PagesManager.GetTypeOfPageByString(pageName)); // TODO NO DEFAULT NAVIGATION!!!
-        }
-        #endregion
-
-        #region Navigate by Type
         /// <summary>
         /// Navigate frame to type
         /// </summary>
@@ -86,16 +93,35 @@ namespace Navigator.Navigation
         {
             Frame frame = this.FrameManager.GetFrameByString(frameName);
 
-            frame.Navigate(targetType); // TODO NO DEFAULT NAVIGATION!!!
-
-            this.History.ClearAfter(this.History.GetCurrent());
-
-            this.History.Add(targetType);
-
-            this.SetHistoryCurrentNode(this.History.FrameNavigationHistory.Last);
-
-            this.RaizeOnNavigated(PagesManager.GetTypeOfPageByString(targetType.FullName), frame);
+            this.NavigateFrame(frame, targetType);
         }
+        public void NavigateFrame(Frame frame, string pageName)
+        {
+            Type targetType = PagesManager.GetTypeOfPageByString(pageName);
+
+            this.NavigateFrame(frame, targetType);
+        }
+        /// <summary>
+        /// Navigate frame to type
+        /// </summary>
+        public void NavigateFrame(HistoryRecord historyRecord)
+        {
+            Frame frame = historyRecord.ParrentFrame;
+
+            this.NavigateFrame(frame,historyRecord.PageFullName);
+        }
+        #endregion
+
+        #region Navigate Frame Silent
+        /// <summary>
+        /// Navigates frame to type without adding to history
+        /// </summary>
+        public void NavigateFrameSilent(Frame frame, Type targetType)
+        {
+            frame.Navigate(targetType); // TODO NO DEFAULT NAVIGATION!!!
+            
+            this.RaizeOnNavigated(PagesManager.GetTypeOfPageByString(targetType.FullName), frame);
+        }   //Main Navigate Silent Method
 
         /// <summary>
         /// Navigates frame to type without adding to history
@@ -104,79 +130,165 @@ namespace Navigator.Navigation
         {
             Frame frame = this.FrameManager.GetFrameByString(frameName);
 
-            frame.Navigate(targetType); // TODO NO DEFAULT NAVIGATION!!!
-
-            this.SetHistoryCurrentNode(this.History.FrameNavigationHistory.Last);
-
-            this.RaizeOnNavigated(PagesManager.GetTypeOfPageByString(targetType.FullName), frame);
+            this.NavigateFrameSilent(frame,targetType);
         }
         /// <summary>
         /// Navigates frame to type without adding to history
         /// </summary>
-        public void NavigateFrameSilent(string frameName, HistoryRecord historyRecord)
+        public void NavigateFrameSilent(string frameName, string pageName)
         {
-            Frame frame = this.FrameManager.GetFrameByString(frameName);
-
+            this.NavigateFrameSilent(frameName, PagesManager.GetTypeOfPageByString(pageName)); // TODO NO DEFAULT NAVIGATION!!!
+        }
+        /// <summary>
+        /// Navigates frame to type without adding to history
+        /// </summary>
+        public void NavigateFrameSilentByHistoryRecord(HistoryRecord historyRecord)
+        {
             Type pageType = PagesManager.GetTypeOfPageByString(historyRecord.PageFullName);
 
-            frame.Navigate(pageType); // TODO NO DEFAULT NAVIGATION!!!
+            Frame parrentFrame = historyRecord.ParrentFrame;
 
             this.SetHistoryCurrentNode(historyRecord);
 
-            this.RaizeOnNavigated(PagesManager.GetTypeOfPageByString(pageType.FullName), frame);
+            this.NavigateFrameSilent(parrentFrame, pageType);
         }
-
         #endregion
 
+        #region Navigate Back & Forward
+        // Forward
+        /// <summary>
+        /// Navigates forward frame according to the history
+        /// </summary>
+        public void NavigateForward(Frame frame)
+        {
+            HistoryRecord historyRecord = this.GoNextHistoryRecord();
+            Type targetPage = PagesManager.GetTypeOfPageByString(historyRecord.PageFullName);
+
+            frame.Navigate(targetPage); // TODO NO DAFAULT NAVIGATION!!!
+            this.RaizeOnNavigated(targetPage, frame);
+        }   // Main navigate forward method
         /// <summary>
         /// Navigates forward frame according to the history
         /// </summary>
         public void NavigateForward(string frameName)
         {
-            string target = this.GetNextHistoryRecord().PageFullName;
             Frame frame = this.FrameManager.GetFrameByString(frameName);
-            Type targetPage = PagesManager.GetTypeOfPageByString(target);
 
-            frame.Navigate(targetPage); // TODO NO DAFAULT NAVIGATION!!!
-            this.RaizeOnNavigated(targetPage, frame);
+            this.NavigateForward(frame);
+        }
+        public void NavigateForward()
+        {
+            HistoryRecord historyRecord = this.GetNextHistoryRecord();
+            Frame frame = historyRecord.ParrentFrame;
+
+            this.NavigateForward(frame);
         }
 
+        // Back
         /// <summary>
-        /// Navigates backward frame according to the history
+        /// Navigates backward frame according to the history to specified frame
+        /// </summary>
+        public void NavigateBack(Frame frame)
+        {
+            Frame parrentFrame = this.GetCurrentHistoryRecord().ParrentFrame; 
+            Type targetPage = PagesManager.GetTypeOfPageByString(this.GoPreviousHistoryRecord().PageFullName);
+            Frame onNavigatedFrame;
+
+
+            if (parrentFrame != frame)
+            {
+                parrentFrame.GoBack(); // Navigate from outer(parrentFrame)
+                onNavigatedFrame = parrentFrame;
+            }
+            else
+            {  
+                
+                frame.Navigate(targetPage); // Navigate incide frame
+                onNavigatedFrame = frame;
+            }
+
+            this.RaizeOnNavigated(targetPage, onNavigatedFrame);
+
+
+        }   // Main navigate backward method
+        /// <summary>
+        /// Navigates backward frame according to the history to specified frame
         /// </summary>
         public void NavigateBack(string frameName)
         {
-            string target = this.GetPreviousHistoryRecord().PageFullName;
             Frame frame = this.FrameManager.GetFrameByString(frameName);
-            Type targetPage = PagesManager.GetTypeOfPageByString(target);
-
-
-
-            if (frame.SourcePageType.FullName == target)
-            {
-                frame.Navigate(targetPage);
-                frame.BackStack.RemoveAt(frame.BackStack.Count - 1);
-                
-            }
-            else
-            {
-                frame.Navigate(targetPage);
-            }
-
-            this.RaizeOnNavigated(targetPage, frame);
-
-
+            this.NavigateBack(frame);
         }
+        /// <summary>
+        /// Navigates backward frame according to the history
+        /// </summary>
+        public void NavigateBack()
+        {
+            HistoryRecord historyRecord = this.GetPreviousHistoryRecord();
+            Frame frame = historyRecord.ParrentFrame;
+
+            this.NavigateBack(frame);
+        }
+        #endregion
 
         #endregion
 
         #region History Navigation Methods
 
+
+        /// <summary>
+        /// Gets current history item
+        /// </summary>
+        /// <returns></returns> 
+        public HistoryRecord GetCurrentHistoryRecord()
+        {
+            return this.History.GetCurrent();
+        }
+        /// <summary>
+        /// Gets next history item
+        /// </summary>
+        /// <returns></returns>
+        public HistoryRecord GetNextHistoryRecord()
+        {
+            HistoryRecord result = null;
+
+            if (this.CanNavigateForward())
+            {
+                result = this.History.CurrentNode.Next.Value;
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// Gets previous history item
+        /// </summary>
+        /// <returns>the value of the previous record</returns>
+        public HistoryRecord GetPreviousHistoryRecord()
+        {
+            HistoryRecord result = null;
+
+            if (this.CanNavigateBack())
+            {
+                result = this.History.CurrentNode.Previous.Value;
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// Gets top history item
+        /// </summary>
+        /// <returns></returns> 
+        public HistoryRecord GetTopHistoryRecord()
+        {
+            return this.History.FrameNavigationHistory.Last.Value;
+        }
+
+
         /// <summary>
         /// Goes to the next history record(gets value of it)
         /// </summary>
         /// <returns>thevalue of the next record</returns>
-        public HistoryRecord GetNextHistoryRecord()
+        public HistoryRecord GoNextHistoryRecord()
         {
             HistoryRecord result = null;
 
@@ -189,10 +301,10 @@ namespace Navigator.Navigation
             return result;
         }
         /// <summary>
-        /// Goes to the previous history record(increases current index and gets value of it)
+        /// Goes to the previous history record(gets value of item)
         /// </summary>
         /// <returns>the value of the previous record</returns>
-        public HistoryRecord GetPreviousHistoryRecord()
+        public HistoryRecord GoPreviousHistoryRecord()
         {
             HistoryRecord result = null;
 
@@ -205,14 +317,15 @@ namespace Navigator.Navigation
             return result;
         }
         /// <summary>
-        /// Navigates to top 
+        /// Goes to top of history
         /// </summary>
-        /// <returns></returns> 
-        public HistoryRecord GetTopHistoryItem()
+        /// <returns>value of the top item</returns> 
+        public HistoryRecord GoTopHistoryItem()
         {
             this.History.CurrentNode = this.History.FrameNavigationHistory.Last;
             return this.History.CurrentNode.Value;
         }
+
         /// <summary>
         /// sets current item to th elast navigated item
         /// </summary>
@@ -262,7 +375,7 @@ namespace Navigator.Navigation
         /// <summary>
         /// Method which raises on navigeted
         /// </summary>
-        /// <param name="page">navigated page (what)</param>
+        /// <param name="pageType">navigated page type (what)</param>
         /// <param name="frame">parrent frame (where)</param>
         private void RaizeOnNavigated(Type pageType, Frame frame) =>
             this.NavigationEventHandler?.OnNavigated(pageType, frame);

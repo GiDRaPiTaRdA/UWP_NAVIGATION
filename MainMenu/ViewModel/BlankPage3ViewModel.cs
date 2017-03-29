@@ -12,12 +12,12 @@ namespace MainMenu.ViewModel
         public DelegateCommand NavigateCommand { get; set; }
         public DelegateCommand NavigateBackCommand { get; set; }
 
-        public BlankPage3ViewModel(Frame frame)
+        public BlankPage3ViewModel()
         { 
-            this.Initalize(frame);
+            this.Initalize();
         }
 
-        private void Initalize(Frame frame)
+        private void Initalize()
         {
             this.NavigateCommand =
                 new DelegateCommand(() =>

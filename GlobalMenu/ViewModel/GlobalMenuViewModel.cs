@@ -47,10 +47,6 @@ namespace GlobalMenu.ViewModel
                                                                                         this.GoForward.RaiseCanExecuteChanged();
                                                                                         this.OnPropertyChanged(nameof(this.History));              
                                                                                 };
-            
-           // if(!NavigationManager.Instance.History.Any())
-
-                //NavigationManager.Instance.History.Clear();
                 NavigationManager.Instance.NavigateFrame(this.frameName, "MainMenu.View.MainPage");
 
         }
@@ -61,20 +57,20 @@ namespace GlobalMenu.ViewModel
                 (h) =>
                 {
                     
-                    NavigationManager.Instance.NavigateFrameSilent(this.frameName, h);
+                    NavigationManager.Instance.NavigateFrameSilentByHistoryRecord(h);
                 });
 
-            this.GoBack = new DelegateCommand(() => NavigationManager.Instance.NavigateBack(this.frameName),
+            this.GoBack = new DelegateCommand(() => NavigationManager.Instance.NavigateBack(),
                                               () => NavigationManager.Instance.CanNavigateBack());
 
-            this.GoForward = new DelegateCommand(() => NavigationManager.Instance.NavigateForward(this.frameName),
+            this.GoForward = new DelegateCommand(() => NavigationManager.Instance.NavigateForward(),
                                                  () => NavigationManager.Instance.CanNavigateForward());
 
             this.GoHome = new DelegateCommand(
                 () =>
                 {
                     NavigationManager.Instance.NavigateFrameSilent(Static.NavigationFrames.WrapperFrame, "MainMenu.View.LoginPage");
-                    Navigator.Navigation.NavigationManager.Instance.History.Clear();
+                   // NavigationManager.Instance.History.Clear();
                 });
 
         }

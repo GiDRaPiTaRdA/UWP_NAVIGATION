@@ -7,7 +7,7 @@
       xmlns:navigation="using:Navigator.FrameControl"
       mc:Ignorable="d"
       x:Name="root"
-     NavigationCacheMode="Disabled"
+     NavigationCacheMode="Enabled"
      >
     <Page.Style>
         <Style TargetType="Page">

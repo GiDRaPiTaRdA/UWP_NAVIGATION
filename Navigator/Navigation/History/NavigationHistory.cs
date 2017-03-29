@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Windows.UI.Xaml.Controls;
+
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable RedundantArgumentDefaultValue
 // ReSharper disable UnusedMethodReturnValue.Global
@@ -21,7 +23,7 @@ namespace Navigator.Navigation.History
         #region Initialization
 
         /// <summary>
-        /// Constructor without initializing default page
+        /// Constructor without initializing NavigationHistory
         /// </summary>
         public NavigationHistory()
         {
@@ -36,11 +38,12 @@ namespace Navigator.Navigation.History
         /// <summary>
         /// Adds page type to the history
         /// </summary>
+        /// <param name="parrentFrame">ParrentFrame</param>
         /// <param name="frameType">Adding frame type</param>
         /// <returns>success of the operation</returns>
-        internal bool Add(Type frameType)
+        internal bool Add(Frame parrentFrame, Type frameType)
         {
-            return this.Add(frameType.FullName);
+            return this.Add(parrentFrame, frameType.FullName);
         }
 
         /// <summary>
@@ -63,14 +66,15 @@ namespace Navigator.Navigation.History
         /// <summary>
         /// Adds page type to the history
         /// </summary>
-        /// <param name="typeName">Adding frame type name</param>
+        /// <param name="parrentFrame">parrent frame</param>
+        /// <param name="typeName">Adding page type name</param>
         /// <returns>success of the operation</returns>
-        internal bool Add(string typeName)
+        internal bool Add(Frame parrentFrame, string typeName)
         {
             bool result = false;
             if (!String.IsNullOrWhiteSpace(typeName))
             {
-                this.FrameNavigationHistory.AddLast(new HistoryRecord(typeName));
+                this.FrameNavigationHistory.AddLast(new HistoryRecord(parrentFrame,typeName));
                 result = true;
             }
 

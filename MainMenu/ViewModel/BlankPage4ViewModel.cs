@@ -17,10 +17,8 @@ namespace MainMenu.ViewModel
 
         private void Initialize()
         {
-            this.NavigateCommand =  new DelegateCommand(()=>
-            Navigator.Navigation.NavigationManager.Instance.NavigateFrameSilent(
-                Static.NavigationFrames.WrapperFrame,
-                "GlobalMenu.View.MainPage"));
+            this.NavigateCommand = new DelegateCommand(() =>
+                                                           Navigator.Navigation.NavigationManager.Instance.NavigateBack());
         }
     }
 }

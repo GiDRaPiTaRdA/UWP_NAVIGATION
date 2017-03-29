@@ -31,7 +31,7 @@ namespace MainMenu.View
         {
             //Assembly.Load(new AssemblyName(this.GetType().AssemblyQualifiedName)).DefinedTypes.Where(t=>t.CustomAttributes.Any(ta=>ta.AttributeType == ))
             this.InitializeComponent();
-            this.DataContext = new BlankPage3ViewModel(this.Frame);
+            this.DataContext = new BlankPage3ViewModel();
         }
     }
 }

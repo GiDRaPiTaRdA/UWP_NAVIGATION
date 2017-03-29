@@ -33,7 +33,7 @@ namespace Navigator.PagesManagment
 
             foreach (var page in Pages)
             {
-                if (page.ToString()==pageName)
+                if (page.FullName==pageName)
                 {
                     var a = page.ToString();
                     pageResult = page;
