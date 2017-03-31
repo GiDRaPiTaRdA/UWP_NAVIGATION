@@ -49,19 +49,19 @@
                                    IsItemClickEnabled="True"
                                    ItemClickCommand="{Binding NavigateCurrentCommand}">
             <controls:TileMenuControl.Items>
-                <controls:MenuButton NavigationPageName="MainMwenu.View.BlankPage1"
+                <controls:MenuButton NavigationPageName="MainMenu.View.BlankPage1"
                                      ParrentFrame="MainMenuFrame"
                                      Title="TITLE0"
                                      Image="ms-appx:///MainMenu/TileIcons/SplashScreen.scale-200.png" />
-                <controls:MenuButton NavigationPageName="MainMwenu.View.BlankPage2"
+                <controls:MenuButton NavigationPageName="MainMenu.View.BlankPage2"
                                      ParrentFrame="MainMenuFrame"
                                      Title="TITLE1"
                                      Image="ms-appx:///MainMenu/TileIcons/SplashScreen.scale-200.png" />
-                <controls:MenuButton NavigationPageName="MainMwenu.View.BlankPage3"
+                <controls:MenuButton NavigationPageName="MainMenu.View.BlankPage3"
                                      ParrentFrame="MainMenuFrame"
                                      Title="TITLE2"
                                      Image="ms-appx:///MainMenu/TileIcons/SplashScreen.scale-200.png" />
-                <controls:MenuButton NavigationPageName="MainMwenu.View.BlankPage4"
+                <controls:MenuButton NavigationPageName="MainMenu.View.BlankPage4"
                                      ParrentFrame="MainMenuFrame"
                                      Title="TITLE3"
                                      Image="ms-appx:///MainMenu/TileIcons/SplashScreen.scale-200.png" />
