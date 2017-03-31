@@ -19,8 +19,6 @@ namespace MainMenu.View
         public AditionalMenu()
         {
             this.InitializeComponent();
-
-            this.DataContext = new AditionalMenuViewModel(this.Frame);
         }
     }
 }

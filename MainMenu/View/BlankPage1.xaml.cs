@@ -29,7 +29,7 @@ namespace MainMenu.View
         public BlankPage1()
         {
             this.InitializeComponent();
-            this.DataContext = new BlankPage1ViewModel(this.Frame);
+            this.DataContext = new BlankPage1ViewModel();
         }
     }
 }

@@ -41,35 +41,56 @@
         </DataTemplate>
 
     </Page.Resources>
+
     <Grid>
-        <controls:TileMenu 
-            ItemTemplate="{StaticResource MenuButtonTemplate}"
-            ItemsSource="{Binding MainMenuPageButtonsList, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                           CanReorderItems="True"
-                           CanDragItems="True"
-                           AllowDrop="True"
-                           SelectionMode="None"
-                           ItemClick="{Binding NavigateCurrentCommand}">
-        </controls:TileMenu>
+        <controls:TileMenuControl ItemTemplate="{StaticResource MenuButtonTemplate}"
+                                  ItemsSource="{Binding Path= MainMenuPageButtonsList, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                  CanReorderItems="True"
+                                  CanDragItems="True"
+                                  AllowDrop="True"
+                                  CanDrag="True"
+                                  SelectionMode="None"
+                                  IsItemClickEnabled="True"
+                                >
 
-        <!--<GridView ItemsSource="{Binding MainMenuPageButtonsList, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                  CanReorderItems="True"
-                  CanDragItems="True"
-                  AllowDrop="True"
-                  SelectionMode="None">
-            <GridView.ItemTemplate>
-                <DataTemplate>
-                    <Image ImageOpened="Image_OnImageOpened"
-                       ImageFailed="Image_OnImageFailed"
-                       Source="../TileIcons/SplashScreen.png" />
-                </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>-->
+            <controls:TileMenuControl.Items>
+                <controls:MenuButton NavigationPageName="MainMenu.View.BlankPage1"
+                                     ParrentFrame="MainMenuFrame"
+                                     Title="TITLE0"
+                                     Image="ms-appx:///MainMenu/TileIcons/SplashScreen.scale-200.png"/>
+                <controls:MenuButton NavigationPageName="MainMenu.View.BlankPage2"
+                                     ParrentFrame="MainMenuFrame"
+                                     Title="TITLE1"
+                                     Image="ms-appx:///MainMenu/TileIcons/SplashScreen.scale-200.png" />
+                <controls:MenuButton NavigationPageName="MainMenu.View.ImageTest"
+                                     ParrentFrame="MainMenuFrame"
+                                     Title="ImageTest"
+                                     Image="ms-appx:///MainMenu/TileIcons/SplashScreen.scale-200.png" />
+                <controls:MenuButton />
+                <controls:MenuButton />
+
+                <controls:MenuButton NavigationPageName="MainMenu.View.AditionalMenu"
+                                     ParrentFrame="MainMenuFrame"
+                                     Title="MENU"
+                                     Image="ms-appx:///MainMenu/TileIcons/SplashScreen.scale-200.png" />
+            </controls:TileMenuControl.Items>
 
 
-        <!--<Image ImageOpened="Image_OnImageOpened"
-               ImageFailed="Image_OnImageFailed"
-               Source="../TileIcons/SplashScreen.png" />-->
+        </controls:TileMenuControl>
+
+        <!--<controls:TileMenuControl ItemTemplate="{StaticResource MenuButtonTemplate}"
+                                  CanReorderItems="True"
+                                  CanDragItems="True"
+                                  AllowDrop="True"
+                                  SelectionMode="None"
+                                  ItemClickCommand="{Binding NavigateCurrentCommand}">
+
+            <controls:TileMenuControl.Items>
+                <controls:MenuButton NavigationPageName="name" />
+                <controls:MenuButton NavigationPageName="name" />
+            </controls:TileMenuControl.Items>
+
+        </controls:TileMenuControl>-->
 
     </Grid>
 

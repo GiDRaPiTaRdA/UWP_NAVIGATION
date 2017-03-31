@@ -11,12 +11,12 @@ namespace MainMenu.ViewModel
     {
         public DelegateCommand NavigateCommand { get; set; }
 
-        public BlankPage1ViewModel(Frame frame)
+        public BlankPage1ViewModel()
         { 
-            this.Initalize(frame);
+            this.Initalize();
         }
 
-        private void Initalize(Frame frame)
+        private void Initalize()
         {
             this.NavigateCommand =
                 new DelegateCommand(() =>

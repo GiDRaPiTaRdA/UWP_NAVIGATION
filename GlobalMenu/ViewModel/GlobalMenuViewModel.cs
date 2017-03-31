@@ -7,8 +7,6 @@ using Windows.Devices.Bluetooth.Advertisement;
 using Windows.UI.Notifications;
 using Windows.UI.Xaml.Controls;
 using GlobalMenu.View;
-using MainMenu.Models;
-using Navigator;
 using Navigator.Annotations;
 using Navigator.FrameControl;
 using Navigator.Navigation;

@@ -19,10 +19,6 @@ namespace MainMenu.View
         public MainPage()
         {
             this.InitializeComponent();
-
-            if(this.DataContext==null)
-                this.DataContext = new MainMenuViewModel();
-
         }
     }
 }

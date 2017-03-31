@@ -107,15 +107,12 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\MainMenuPageButton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\BlankPage4ViewModel.cs" />
     <Compile Include="ViewModel\BlankPage3ViewModel.cs" />
     <Compile Include="ViewModel\BlankPage2ViewModel.cs" />
     <Compile Include="ViewModel\BlankPage1ViewModel.cs" />
-    <Compile Include="ViewModel\AditionalMenuViewModel.cs" />
     <Compile Include="ViewModel\LoginPageViewModel.cs" />
-    <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="View\BlankPage3.xaml.cs">
       <DependentUpon>BlankPage3.xaml</DependentUpon>
     </Compile>
@@ -188,9 +185,9 @@
       <Project>{72ed367a-d89a-48a1-a702-6ccfce8eeefa}</Project>
       <Name>AssetsLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Controls\Controls.csproj">
+    <ProjectReference Include="..\Controls\NavigationControls.csproj">
       <Project>{68eba132-6528-4b83-9b6e-7b8e24e9b5be}</Project>
-      <Name>Controls</Name>
+      <Name>NavigationControls</Name>
     </ProjectReference>
     <ProjectReference Include="..\Navigator\Navigator.csproj">
       <Project>{c90f79b0-11db-4a0a-a0a5-bacdf71023e2}</Project>
