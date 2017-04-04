@@ -125,6 +125,10 @@
       <Project>{72ed367a-d89a-48a1-a702-6ccfce8eeefa}</Project>
       <Name>AssetsLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Controls\NavigationControls.csproj">
+      <Project>{68EBA132-6528-4B83-9B6E-7B8E24E9B5BE}</Project>
+      <Name>NavigationControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MainMenu\MainMenu.csproj">
       <Project>{9715b4d2-ee5e-4942-ba01-f91110035898}</Project>
       <Name>MainMenu</Name>

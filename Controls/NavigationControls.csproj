@@ -107,6 +107,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BreadCrumbs.cs" />
     <Compile Include="MenuButton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TileMenuControl.cs" />

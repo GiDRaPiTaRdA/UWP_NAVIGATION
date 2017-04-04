@@ -14,6 +14,6 @@ namespace LoadingsManager.Loaders
         }
 
         private bool FileCheck(string path)=>
-            File.Exists(path) && Path.GetExtension(path) == ".xml";
+            File.Exists(path);
     }
 }

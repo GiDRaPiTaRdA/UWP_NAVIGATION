@@ -22,7 +22,13 @@ namespace Controls
 {
     public sealed class TileMenuControl : GridView
     {
-        private readonly DelegateCommand<object> defaultItemClickCommand;
+        private static readonly DelegateCommand<MenuButton> defaultItemClickCommand = new DelegateCommand<MenuButton>(but =>
+            {
+                if (but.NavigationPageName != null)
+                {
+                    NavigationManager.Instance.NavigateFrame(but.ParrentFrame, but.NavigationPageName);
+                }
+            });
 
         #region DependencyProperties
         public static readonly DependencyProperty ItemsProperty =
@@ -35,20 +41,16 @@ namespace Controls
         public static readonly DependencyProperty ItemClickDependencyProperty =
             DependencyProperty.Register(
                 "ItemClickCommand",
-                typeof(DelegateCommand<object>),
+                typeof(DelegateCommand<MenuButton>),
                 typeof(TileMenuControl),
-                null);
+                new PropertyMetadata(defaultItemClickCommand));
 
         #endregion
 
         #region DelegateCommands
-        public DelegateCommand<object> ItemClickCommand
+        public DelegateCommand<MenuButton> ItemClickCommand
         {
-            get
-            {
-                // If ItemClickDependencyProperty value is not initialized so use default command
-                return (DelegateCommand<object>)this.GetValue(ItemClickDependencyProperty)?? this.defaultItemClickCommand;
-            }
+            get { return (DelegateCommand<MenuButton>)this.GetValue(ItemClickDependencyProperty); }
             set { this.SetValue(ItemClickDependencyProperty, this.ItemClickCommand); }
         }
         #endregion
@@ -57,18 +59,8 @@ namespace Controls
         public TileMenuControl()
         {
             this.DefaultStyleKey = typeof(TileMenuControl);
-
-            this.defaultItemClickCommand = new DelegateCommand<object>(obj =>
-            {
-
-                MenuButton button = (MenuButton)obj;
-
-                if (button.NavigationPageName != null)
-                    NavigationManager.Instance.NavigateFrame(button.ParrentFrame, button.NavigationPageName);
-            }
-           );
         }
-       
+
         protected override void OnApplyTemplate()
         {
             this.InitializeButtonsSourse();
@@ -82,26 +74,20 @@ namespace Controls
         private void ItemClickAction(object sender, ItemClickEventArgs e)
         {
             if (this.ItemClickCommand == null)
+            {
                 throw new ArgumentNullException(
                     "ItemClickCommand. Error while binding to ItemClickCommand - possibly bad binding key or property initialization is absent");
+            }
 
-            this.ItemClickCommand.Execute(e.ClickedItem);
+            
+            this.ItemClickCommand.Execute(e.ClickedItem as MenuButton);
         }
 
         private void InitializeButtonsSourse()
         {
             if (this.ItemsSource == null)
             {
-                var a = this.Items;
-                var colection = new ObservableCollection<MenuButton>();
-
-
-                foreach (var VARIABLE in a)
-                {
-                    colection.Add((MenuButton)VARIABLE);
-                }
-
-                this.ItemsSource = colection;
+                this.ItemsSource = new ObservableCollection<MenuButton>(this.Items.Cast<MenuButton>());
             }
 
         }

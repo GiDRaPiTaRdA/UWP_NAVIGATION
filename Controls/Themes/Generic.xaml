@@ -4,7 +4,72 @@
     xmlns:local="using:Controls">
 
 
-        
+    <!--___________________________________ TEMPLATES and STYLES ______________________________________-->
+
+    <!--RoundedButttonStyle-->
+    <Style x:Key="RoundedButtonStyle"
+           TargetType="AppBarButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="AppBarButton">
+                    <Border Name="Border"
+                            CornerRadius="15"
+                            Background="#FFE8E8E8"
+                            BorderThickness="1"
+                            BorderBrush="Transparent"
+                            Padding="2">
+                        <ContentPresenter  HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" />
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0"
+                                                        To="LightGray"
+                                                        Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="Border" />
+                                        <ColorAnimation Duration="0"
+                                                        To="Transparent"
+                                                        Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="Border" />
+
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0"
+                                                        To="White"
+                                                        Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="Border" />
+
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--BreadCrumbTemplate-->
+    <DataTemplate x:Key="BreadCrumbTemplate">
+        <AppBarButton HorizontalAlignment="Center"
+                      x:Name="AppBarButton"
+                      Style="{StaticResource RoundedButtonStyle}"
+                      Margin="5"
+                      Width="auto"
+                      Height="40"
+                      Command="{Binding NavigateCommand, RelativeSource={RelativeSource TemplatedParent}}">
+            <TextBlock Margin="5,0,5,0"
+                       Text="{Binding PageFullName}" />
+        </AppBarButton>
+    </DataTemplate>
+
+    <!--______________________________________ CONTROL STYLES _________________________________________-->
+
+    <!--TileMenu-->
     <Style TargetType="local:TileMenuControl">
         <Setter Property="Template">
             <Setter.Value>
@@ -22,7 +87,33 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
- 
+
+    <!--BreadCumbs-->
+    <Style TargetType="local:BreadCrumbs" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:BreadCrumbs">
+                    <ItemsControl x:Name="GridView"
+                                  ItemsSource="{TemplateBinding ItemsSource}"
+                                  >
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Content="{Binding Path=Tex,RelativeSource={RelativeSource TemplatedParent}}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 </ResourceDictionary>
+
+    <!--Note-->
+    <!--Command="{TemplateBinding local:BreadCrumbs.ClickCommand}"-->

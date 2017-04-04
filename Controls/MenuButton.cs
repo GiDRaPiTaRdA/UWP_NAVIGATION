@@ -13,7 +13,6 @@ namespace Controls
         public string NavigationPageName { get; set; }
         public string ParrentFrame { get; set; }
         public string Title { get; set; }
-        public string History { get; set; }
         public string Image { get; set; }
 
         public MenuButton() {}

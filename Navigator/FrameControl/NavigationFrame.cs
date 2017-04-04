@@ -28,7 +28,7 @@ namespace Navigator.FrameControl
         private static void OnFrameNameDpChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (e.OldValue != e.NewValue && e.OldValue != null)
-                throw new Exception("Modifying property FrameName is forbidden");
+            { throw new Exception("Modifying property FrameName is forbidden");}
 
             var nf = d as NavigationFrame;
             NavigationManager.Instance.FrameManager.AddFrame(nf);

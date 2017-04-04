@@ -235,7 +235,6 @@ namespace Navigator.Navigation
 
         #region History Navigation Methods
 
-
         /// <summary>
         /// Gets current history item
         /// </summary>

@@ -68,7 +68,6 @@ namespace GlobalMenu.ViewModel
                 () =>
                 {
                     NavigationManager.Instance.NavigateFrameSilent(Static.NavigationFrames.WrapperFrame, "MainMenu.View.LoginPage");
-                   // NavigationManager.Instance.History.Clear();
                 });
 
         }

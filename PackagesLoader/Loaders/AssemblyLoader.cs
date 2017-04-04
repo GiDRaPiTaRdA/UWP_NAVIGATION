@@ -19,7 +19,7 @@ namespace LoadingsManager.Loaders
 
             foreach (ModuleContainer module in modules)
             {
-                string assembyName = module.GetDynamicObj().GetProperty("AssemblyName");
+                string assembyName = module.GetProperty("AssemblyName").ToString();
                 Assembly assembly = Assembly.Load(new AssemblyName(assembyName));
                 allAssemblies.Add(assembly);
             }

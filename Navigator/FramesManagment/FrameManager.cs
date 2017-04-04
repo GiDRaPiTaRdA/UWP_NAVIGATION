@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Windows.UI.Xaml.Controls;
 using Navigator.FrameControl;
 
@@ -16,18 +17,15 @@ namespace Navigator.FramesManagment
 
         public void InitializeFrames(NavigationFrame[] frames)
         {
-            foreach (var navigationFrame in frames)
-            {
-                this.Frames.Add(navigationFrame.FrameName,navigationFrame);
-            }
+            this.Frames = frames.ToDictionary(f => f.FrameName, f => f);
         }
 
         public void AddFrame(NavigationFrame navigationFrame)
         {
             if (!this.Frames.ContainsKey(navigationFrame.FrameName))
-                this.Frames.Add(navigationFrame.FrameName, navigationFrame);
+            { this.Frames.Add(navigationFrame.FrameName, navigationFrame);}
             else
-                this.Frames[navigationFrame.FrameName] = navigationFrame;
+            { this.Frames[navigationFrame.FrameName] = navigationFrame;}
         }
 
         public NavigationFrame GetFrameByString(string frameName)

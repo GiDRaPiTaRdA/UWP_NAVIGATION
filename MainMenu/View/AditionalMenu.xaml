@@ -65,7 +65,6 @@
                                      ParrentFrame="MainMenuFrame"
                                      Title="TITLE3"
                                      Image="ms-appx:///MainMenu/TileIcons/SplashScreen.scale-200.png" />
-
             </controls:TileMenuControl.Items>
         </controls:TileMenuControl>
     </Grid>

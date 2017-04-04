@@ -5,6 +5,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:navigation="using:Navigator.FrameControl"
+      xmlns:controls="using:Controls"
       mc:Ignorable="d"
       x:Name="root"
      NavigationCacheMode="Enabled"
@@ -77,32 +78,6 @@
             </Setter>
         </Style>
 
-        <!--<DataTemplate x:Key="GlobalMenuButtonTemplate">
-            <Grid Height="200"
-                  Width="200"
-                  Margin="5"
-                  Background="{StaticResource ButtonColor}"
-                  BorderBrush="{StaticResource IconPathColor}"
-                  BorderThickness="5">
-                
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <TextBlock Grid.Row="0"
-                           Text="{Binding Path= Title}" />
-                <Grid Grid.Row="1"
-                      Padding="20"
-                      HorizontalAlignment="Center"
-                      VerticalAlignment="Center">
-                    <Image Source="{Binding Path=Image}"/>
-                    
-                </Grid>
-
-            </Grid>
-        </DataTemplate>-->
-
         <DataTemplate x:Key="BreadCrumbTemplate">
             <AppBarButton HorizontalAlignment="Center"
                           Style="{StaticResource RoundedButtonStyle}"
@@ -119,13 +94,13 @@
     </Page.Resources>
 
         <!-- Content Region -->
-    <Grid x:Name="Grid"
-          >
+    <Grid x:Name="Grid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
+        <!--NavigationBar-->
         <Grid Grid.Row="0"
               Background="WhiteSmoke">
                 <Grid.ColumnDefinitions>
@@ -134,34 +109,48 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
+            <!--Home-->
                 <AppBarButton Grid.Column="0"
                           Height="{StaticResource BasicSize}"
                           Width="{StaticResource BasicSize}"
                           Icon="Home"
                           Command="{Binding GoHome}" />
+            <!--Back-->
                 <AppBarButton Grid.Column="1"
                           Height="{StaticResource BasicSize}"
                           Width="{StaticResource BasicSize}"
                           Icon="Back"
                           Command="{Binding GoBack}" />
-            <AppBarButton Grid.Column="2"
+            <!--Front-->
+                <AppBarButton Grid.Column="2"
                           Height="{StaticResource BasicSize}"
                           Width="{StaticResource BasicSize}"
                           Icon="Forward"
                           Command="{Binding GoForward}" />
-            <ItemsControl Grid.Column="3"
-                          
-                      ItemsSource="{Binding History}"
-                ItemTemplate="{StaticResource BreadCrumbTemplate}"
-                    >
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
+            <!--BreadCrumbs-->
+
+
+            <ScrollViewer Grid.Column="3"
+                          HorizontalScrollBarVisibility="Hidden"
+                          HorizontalScrollMode="Enabled"
+                          VerticalScrollBarVisibility="Disabled"
+                          VerticalScrollMode="Disabled">
+                <ItemsControl 
+                              x:Name="GridView"
+                              ItemsSource="{Binding History}"
+                              ItemTemplate="{StaticResource BreadCrumbTemplate}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </ScrollViewer>
+            <!--<controls:BreadCrumbs Grid.Column="3"
+                                  ItemsSource="{Binding History}"/>-->
         </Grid>
 
+        <!--NavigationFrame-->
         <navigation:NavigationFrame Grid.Row="1" Margin="5"
                                     FrameName="MainMenuFrame"/>
 

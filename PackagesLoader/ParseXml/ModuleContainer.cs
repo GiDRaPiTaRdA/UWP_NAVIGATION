@@ -29,7 +29,5 @@ namespace LoadingsManager.ParseXml
             object result = this.Properties[key];
             return result;
         }
-
-        public dynamic GetDynamicObj() => this;
     }
 }
