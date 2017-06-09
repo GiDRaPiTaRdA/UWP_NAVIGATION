@@ -13,10 +13,7 @@ namespace LoadingsManager.ParseXml
 
         public ModuleContainer(Dictionary<string, object> properties = null)
         {
-            if (properties == null)
-                this.Properties = new Dictionary<string, object>();
-            else
-                this.Properties = properties;
+            this.Properties = properties ?? new Dictionary<string, object>();
         }
 
         public void AddPropery(string name, object value)

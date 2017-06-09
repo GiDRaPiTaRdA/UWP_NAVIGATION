@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using System.Xml;
+using System.Xml.Linq;
 using Windows.Storage;
 
 namespace LoadingsManager.ParseXml

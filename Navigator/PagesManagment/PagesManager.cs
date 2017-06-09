@@ -7,7 +7,7 @@ namespace Navigator.PagesManagment
 {
     public class PagesManager
     {
-        public readonly PagesManagerEventHandler EventHandler = new PagesManagerEventHandler();
+        public PagesManagerEventHandler EventHandler => new PagesManagerEventHandler();
 
         private static Type[] pagesTemporaryStorage;
 
@@ -35,7 +35,6 @@ namespace Navigator.PagesManagment
             {
                 if (page.FullName==pageName)
                 {
-                    var a = page.ToString();
                     pageResult = page;
                     break;
                 }

@@ -14,10 +14,8 @@ namespace SRBD_UWP.PagesManager
         public static void LoadImportingPageTypes()
         {
             TypesLoader typesLoader =  new TypesLoader("LoadingModulesConfig.xml");
-            var types = typesLoader.LoadImportingPageTypes(t =>
-                                                               t.CustomAttributes.Any(a =>
-                                                                                          a.AttributeType
-                                                                                          == typeof(Navigator.NavigationAttribute.NavigationPageAttribute)));
+            var types = typesLoader.LoadImportingPageTypes(
+                t => t.CustomAttributes.Any(a =>a.AttributeType== typeof(Navigator.NavigationAttribute.NavigationPageAttribute)));
             Navigator.Navigation.NavigationManager.InitializePageTypes(types);
         }
 
